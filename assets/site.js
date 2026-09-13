@@ -44,20 +44,6 @@
     setTimeout(() => { location.href = a.href; }, 590);
   });
 
-  // Resilient fallback for third-party preview images
-  document.querySelectorAll('img[data-fallback-src]').forEach((img) => {
-    const applyFallback = () => {
-      if (img.dataset.fallbackApplied) return;
-      img.dataset.fallbackApplied = 'true';
-      img.alt = img.dataset.fallbackAlt || img.alt;
-      img.src = img.dataset.fallbackSrc;
-    };
-    img.addEventListener('error', applyFallback, { once: true });
-    setTimeout(() => {
-      if (!img.complete || !img.naturalWidth) applyFallback();
-    }, 3500);
-  });
-
   // Live inquiry form
   const form = document.getElementById('projectForm');
   const status = document.getElementById('projectFormStatus');
