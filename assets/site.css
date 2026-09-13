@@ -781,3 +781,11 @@ footer,
     animation:none !important;
   }
 }
+
+
+/* Mobile tap-target resilience */
+@media(max-width:759px){
+  .menu-btn{min-width:44px;min-height:44px;justify-content:flex-end}
+  .menu-close{width:44px;height:44px}
+  .down{width:44px;height:44px}
+}
