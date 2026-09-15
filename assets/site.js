@@ -8,10 +8,10 @@
 
   const pageName = body.dataset.pageLabel || 'WebDotMe';
   if (ptTitle) ptTitle.textContent = pageName;
-  requestAnimationFrame(() => {
-    body.classList.add('page-enter');
-    setTimeout(() => body.classList.remove('page-enter'), 1050);
-  });
+	requestAnimationFrame(() => {
+		body.classList.add('page-enter');
+		setTimeout(() => body.classList.remove('page-enter'), 820);
+	});
 
   const toggleMenu = (state) => {
     body.classList.toggle('menu-open', state);
@@ -41,8 +41,64 @@
     if (ptTitle) ptTitle.textContent = label;
     body.classList.remove('page-enter');
     body.classList.add('transitioning');
-    setTimeout(() => { location.href = a.href; }, 590);
+		setTimeout(() => { location.href = a.href; }, 450);
   });
+
+	// Motion follows intent: the environment responds quietly to the pointer,
+	// while the project itself gets the richer interaction.
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+	if (!reduceMotion && finePointer) {
+		document.documentElement.classList.add('motion-reactive');
+		let targetX = 0;
+		let targetY = 0;
+		let currentX = 0;
+		let currentY = 0;
+		let motionFrame = 0;
+
+		const renderField = () => {
+			currentX += (targetX - currentX) * .12;
+			currentY += (targetY - currentY) * .12;
+			document.documentElement.style.setProperty('--field-x', `${currentX.toFixed(2)}px`);
+			document.documentElement.style.setProperty('--field-y', `${currentY.toFixed(2)}px`);
+
+			if (Math.abs(targetX - currentX) > .05 || Math.abs(targetY - currentY) > .05) {
+				motionFrame = requestAnimationFrame(renderField);
+			} else {
+				motionFrame = 0;
+			}
+		};
+
+		window.addEventListener('pointermove', (event) => {
+			targetX = ((event.clientX / window.innerWidth) - .5) * 12;
+			targetY = ((event.clientY / window.innerHeight) - .5) * 9;
+			if (!motionFrame) motionFrame = requestAnimationFrame(renderField);
+		}, { passive: true });
+
+		document.querySelectorAll('.browser, .project-row, .screen-frame').forEach((card) => {
+			card.addEventListener('pointermove', (event) => {
+				const rect = card.getBoundingClientRect();
+				card.style.setProperty('--card-x', `${event.clientX - rect.left}px`);
+				card.style.setProperty('--card-y', `${event.clientY - rect.top}px`);
+			}, { passive: true });
+		});
+	}
+
+	// IntersectionObserver keeps the reveal choreography intact in browsers
+	// that do not yet support scroll-driven CSS animation timelines.
+	if (!reduceMotion && !CSS.supports('animation-timeline: view()')) {
+		document.documentElement.classList.add('observer-reveal');
+		const revealObserver = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				entry.target.classList.add('is-visible');
+				revealObserver.unobserve(entry.target);
+			});
+		}, { rootMargin: '0px 0px -12% 0px', threshold: .12 });
+
+		document.querySelectorAll('.reveal, .reveal-left').forEach((element) => revealObserver.observe(element));
+	}
 
   // Live inquiry form
   const form = document.getElementById('projectForm');
