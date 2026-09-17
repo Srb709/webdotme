@@ -14,8 +14,7 @@
   // Safari can restore a page from its back-forward cache with the outgoing
   // transition class still applied. Clear it both before caching and on return.
   window.addEventListener('pagehide', resetRouteState);
-  window.addEventListener('pageshow', (event) => {
-    if (!event.persisted) return;
+  window.addEventListener('pageshow', () => {
     resetRouteState();
     requestAnimationFrame(resetRouteState);
   });
@@ -136,75 +135,55 @@
     }
   });
 
-  // Live inquiry form
+  // The inquiry form opens a prepared SMS immediately. The visitor still
+  // controls the final send action in their phone's Messages app.
   const form = document.getElementById('projectForm');
   const status = document.getElementById('projectFormStatus');
-  const submit = form?.querySelector('.submit');
-  const endpoint = 'https://jenivmopscalrrgthvmz.supabase.co/functions/v1/webdotme-lead';
 
-  if (form && status && submit && window.fetch) {
+  if (form) {
     form.addEventListener('input', () => {
       if (form.dataset.started) return;
       form.dataset.started = 'true';
       track('generate_lead_start', { form_name: 'project_inquiry' });
     }, { once: true });
 
-    form.addEventListener('submit', async (event) => {
+    form.addEventListener('submit', (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
 
-      const label = submit.querySelector('span:first-child');
-      const original = label?.textContent || 'SEND IT';
-      submit.disabled = true;
-      if (label) label.textContent = 'SENDING…';
-      status.textContent = '';
-      status.className = 'form-status';
+      const fd = new FormData(form);
+      const payload = {
+        name: String(fd.get('name') || ''),
+        email: String(fd.get('email') || ''),
+        phone: String(fd.get('phone') || ''),
+        business: String(fd.get('business') || ''),
+        websiteInstagram: String(fd.get('website_instagram') || ''),
+        needs: fd.getAll('needs').map(String),
+        budget: String(fd.get('budget') || ''),
+        project: String(fd.get('project') || '')
+      };
+      const needs = payload.needs.length ? payload.needs.join(', ') : 'Not selected';
+      const draft = `Hey Steven — I just filled out the WebDotMe project form.
 
-      try {
-        const fd = new FormData(form);
-        const payload = {
-          name: String(fd.get('name') || ''),
-          email: String(fd.get('email') || ''),
-          phone: String(fd.get('phone') || ''),
-          business: String(fd.get('business') || ''),
-          website_instagram: String(fd.get('website_instagram') || ''),
-          needs: fd.getAll('needs').map(String),
-          budget: String(fd.get('budget') || ''),
-          project: String(fd.get('project') || ''),
-          company_url: String(fd.get('company_url') || ''),
-          page_url: window.location.href,
-          referrer: document.referrer,
-          utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
-          utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
-          utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || ''
-        };
-        const res = await fetch(endpoint, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(payload)
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok) throw new Error(data.error || 'Unable to send inquiry.');
-        const draftText = document.getElementById('draftText');
-        const draftEmail = document.getElementById('draftEmail');
-        const needs = payload.needs.length ? payload.needs.join(', ') : 'Not selected';
-        const draft = `New WebDotMe inquiry\n\nName: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || 'Not provided'}\nBusiness: ${payload.business || 'Not provided'}\nWebsite / Instagram: ${payload.website_instagram || 'Not provided'}\nNeeds: ${needs}\nBudget: ${payload.budget || 'Not selected'}\n\nProject:\n${payload.project}`;
-        if (draftText) draftText.href = `sms:+12157799288?&body=${encodeURIComponent(draft)}`;
-        if (draftEmail) draftEmail.href = `mailto:webdotme.design@gmail.com?subject=${encodeURIComponent(`WebDotMe inquiry — ${payload.business || payload.name}`)}&body=${encodeURIComponent(draft)}`;
-        form.reset();
-        form.classList.add('is-sent');
-        status.textContent = '';
-        track('generate_lead', {
-          form_name: 'project_inquiry',
-          selected_services: payload.needs.join(', ')
-        });
-      } catch (err) {
-        track('form_error', { form_name: 'project_inquiry' });
-        status.textContent = err?.message || 'Something went wrong. Please try again.';
-        status.classList.add('is-error');
-        submit.disabled = false;
-        if (label) label.textContent = original;
-      }
+Name: ${payload.name}
+Email: ${payload.email}
+Phone: ${payload.phone || 'Not provided'}
+Business: ${payload.business || 'Not provided'}
+Website / Instagram: ${payload.websiteInstagram || 'Not provided'}
+Needs: ${needs}
+Budget: ${payload.budget || 'Not selected'}
+
+Project:
+${payload.project}`;
+
+      track('generate_lead', {
+        form_name: 'project_inquiry',
+        contact_method: 'sms',
+        selected_services: payload.needs.join(', ')
+      });
+      if (status) status.textContent = 'Opening your prepared text…';
+      window.location.href = `sms:+12157799288?&body=${encodeURIComponent(draft)}`;
     });
   }
 })();
+
