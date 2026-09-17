@@ -5,6 +5,7 @@ Independent web design portfolio for WebDotMe.
 ## Routes
 - `/`
 - `/work/`
+- `/work/washington-benefits-group/`
 - `/work/little-lute-studio/`
 - `/services/`
 - `/about/`
