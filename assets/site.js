@@ -171,6 +171,12 @@
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.ok) throw new Error(data.error || 'Unable to send inquiry.');
+        const draftText = document.getElementById('draftText');
+        const draftEmail = document.getElementById('draftEmail');
+        const needs = payload.needs.length ? payload.needs.join(', ') : 'Not selected';
+        const draft = `New WebDotMe inquiry\n\nName: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || 'Not provided'}\nBusiness: ${payload.business || 'Not provided'}\nWebsite / Instagram: ${payload.website_instagram || 'Not provided'}\nNeeds: ${needs}\nBudget: ${payload.budget || 'Not selected'}\n\nProject:\n${payload.project}`;
+        if (draftText) draftText.href = `sms:+12157799288?&body=${encodeURIComponent(draft)}`;
+        if (draftEmail) draftEmail.href = `mailto:webdotme.design@gmail.com?subject=${encodeURIComponent(`WebDotMe inquiry — ${payload.business || payload.name}`)}&body=${encodeURIComponent(draft)}`;
         form.reset();
         form.classList.add('is-sent');
         status.textContent = '';
