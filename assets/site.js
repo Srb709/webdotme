@@ -6,6 +6,20 @@
   const transition = document.querySelector('.page-transition');
   const ptTitle = transition?.querySelector('.pt-title');
 
+  const resetRouteState = () => {
+    body.classList.remove('transitioning', 'page-enter', 'menu-open');
+    open?.setAttribute('aria-expanded', 'false');
+  };
+
+  // Safari can restore a page from its back-forward cache with the outgoing
+  // transition class still applied. Clear it both before caching and on return.
+  window.addEventListener('pagehide', resetRouteState);
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    resetRouteState();
+    requestAnimationFrame(resetRouteState);
+  });
+
   const pageName = body.dataset.pageLabel || 'WebDotMe';
   if (ptTitle) ptTitle.textContent = pageName;
 	requestAnimationFrame(() => {
