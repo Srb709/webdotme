@@ -1266,3 +1266,82 @@ body::after{display:none!important}
   .brand-wordmark span,.hero-intro,.hero-orbit,.featured-jump b{animation:none!important}
 }
 
+/* Portfolio feature 02 — Washington Benefits Group */
+.portfolio-feature{
+	display:block;
+}
+.portfolio-feature + .portfolio-feature{
+	margin-top:clamp(78px,13vw,150px);
+	padding-top:clamp(68px,10vw,110px);
+	border-top:1px solid var(--line);
+}
+.browser-wbg{
+	background:#f4f3ee;
+}
+.wbg-preview{
+	position:relative;
+	aspect-ratio:1.78;
+	overflow:hidden;
+	background:#e9efec;
+}
+.wbg-preview img{
+	display:block;
+	width:100%;
+	height:100%;
+	object-fit:cover;
+	object-position:top center;
+	transition:transform .85s var(--ease),filter .55s var(--ease);
+}
+.portfolio-feature-wbg > a:hover .wbg-preview img{
+	transform:scale(1.018);
+	filter:saturate(1.05);
+}
+.case-wbg-hero{
+	background:#edf2ef;
+	color:#153f35;
+}
+.case-wbg-title{
+	font-family:Georgia,serif;
+	font-weight:500;
+	font-size:clamp(60px,17vw,150px);
+	line-height:.78;
+	letter-spacing:-.065em;
+}
+.case-wbg-title span:nth-child(2){
+	color:#54786d;
+}
+.case-wbg-title span:last-child{
+	color:#153f35;
+}
+.case-wbg-images{
+	grid-template-columns:1fr;
+	align-items:start;
+	max-width:1180px;
+}
+.case-wbg-images img{
+	aspect-ratio:auto;
+	max-height:none;
+	object-position:top;
+	border:1px solid rgba(21,63,53,.14);
+}
+.case-wbg-images img:first-child{
+	transform:rotate(-1.2deg);
+}
+.wbg-pullquote{
+	color:#dff599;
+}
+@media(max-width:759px){
+	.wbg-preview{
+		aspect-ratio:1.15;
+	}
+	.wbg-preview img{
+		width:178%;
+		max-width:none;
+		object-fit:cover;
+		object-position:top left;
+	}
+	.case-wbg-images{
+		grid-template-columns:1fr;
+		gap:30px;
+	}
+}
