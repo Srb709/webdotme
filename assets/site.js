@@ -100,6 +100,28 @@
 		document.querySelectorAll('.reveal, .reveal-left').forEach((element) => revealObserver.observe(element));
 	}
 
+  // Conversion measurement. Events are queued now and flow into Google Analytics
+  // as soon as the production measurement ID is connected.
+  const track = (eventName, params = {}) => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+  };
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (href.startsWith('mailto:')) track('email_click', { link_url: href });
+    if (href.startsWith('tel:')) track('phone_click', { link_url: href });
+    if (/^https?:\/\//i.test(href) && !href.includes('webdotme.com')) {
+      track('outbound_click', { link_url: href });
+    }
+  });
+
   // Live inquiry form
   const form = document.getElementById('projectForm');
   const status = document.getElementById('projectFormStatus');
@@ -107,6 +129,12 @@
   const endpoint = 'https://jenivmopscalrrgthvmz.supabase.co/functions/v1/webdotme-lead';
 
   if (form && status && submit && window.fetch) {
+    form.addEventListener('input', () => {
+      if (form.dataset.started) return;
+      form.dataset.started = 'true';
+      track('generate_lead_start', { form_name: 'project_inquiry' });
+    }, { once: true });
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
@@ -123,12 +151,18 @@
         const payload = {
           name: String(fd.get('name') || ''),
           email: String(fd.get('email') || ''),
+          phone: String(fd.get('phone') || ''),
           business: String(fd.get('business') || ''),
-          website_instagram: String(fd.get('website_or_instagram') || ''),
+          website_instagram: String(fd.get('website_instagram') || ''),
           needs: fd.getAll('needs').map(String),
           budget: String(fd.get('budget') || ''),
           project: String(fd.get('project') || ''),
-          company_url: String(fd.get('company_url') || '')
+          company_url: String(fd.get('company_url') || ''),
+          page_url: window.location.href,
+          referrer: document.referrer,
+          utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
+          utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+          utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || ''
         };
         const res = await fetch(endpoint, {
           method:'POST',
@@ -140,7 +174,12 @@
         form.reset();
         form.classList.add('is-sent');
         status.textContent = '';
+        track('generate_lead', {
+          form_name: 'project_inquiry',
+          selected_services: payload.needs.join(', ')
+        });
       } catch (err) {
+        track('form_error', { form_name: 'project_inquiry' });
         status.textContent = err?.message || 'Something went wrong. Please try again.';
         status.classList.add('is-error');
         submit.disabled = false;

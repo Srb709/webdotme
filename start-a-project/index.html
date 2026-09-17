@@ -5,11 +5,19 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#080808" name="theme-color"/>
-<title>Start a Project — WebDotMe</title>
-<meta content="Start a website design or development project with WebDotMe." name="description"/>
-<meta content="Start a Project — WebDotMe" property="og:title"/>
-<meta content="Start a website design or development project with WebDotMe." property="og:description"/>
+<title>Start a Website Project | Philadelphia Web Designer | WebDotMe</title>
+<meta content="Tell WebDotMe about your website, redesign, local SEO, or support project. Every inquiry goes directly to Steven, your Philadelphia web designer." name="description"/>
+<link href="https://www.webdotme.com/start-a-project/" rel="canonical"/>
+<meta content="Start a Website Project | WebDotMe" property="og:title"/>
+<meta content="Tell WebDotMe about your website, redesign, local SEO, or support project." property="og:description"/>
 <meta content="website" property="og:type"/>
+<meta content="WebDotMe" property="og:site_name"/>
+<meta content="https://www.webdotme.com/start-a-project/" property="og:url"/>
+<meta content="https://www.webdotme.com/assets/webdotme-social.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Start a Website Project | WebDotMe" name="twitter:title"/>
+<meta content="Tell WebDotMe what your business needs online." name="twitter:description"/>
+<meta content="https://www.webdotme.com/assets/webdotme-social.png" name="twitter:image"/>
 <link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="../assets/site.css" rel="stylesheet"/>
 </head>
@@ -70,8 +78,9 @@
 <form accept-charset="UTF-8" action="https://jenivmopscalrrgthvmz.supabase.co/functions/v1/webdotme-lead" class="project-form" id="projectForm" method="post" target="leadSink">
 <label class="field"><span>Name</span><input autocomplete="name" name="name" placeholder="Your name" required="" type="text"/></label>
 <label class="field"><span>Email</span><input autocomplete="email" name="email" placeholder="you@business.com" required="" type="email"/></label>
+<label class="field"><span>Phone <small>(optional)</small></span><input autocomplete="tel" inputmode="tel" name="phone" placeholder="Best number to reach you" type="tel"/></label>
 <label class="field"><span>Business</span><input name="business" placeholder="Business or project name" type="text"/></label>
-<label class="field"><span>Website / Instagram</span><input name="website_or_instagram" placeholder="@handle or URL" type="text"/></label>
+<label class="field"><span>Website / Instagram</span><input name="website_instagram" placeholder="@handle or URL" type="text"/></label>
 <fieldset class="need-group"><legend>What do you need?</legend><div class="need-options">
 <label><input name="needs" type="checkbox" value="New website"/><span>New website</span></label>
 <label><input name="needs" type="checkbox" value="Redesign"/><span>Redesign</span></label>
@@ -82,13 +91,13 @@
 <label class="field"><span>What are we making?</span><textarea name="project" placeholder="Give me the short version. What does the business do, what is not working, and what do you want the new site to accomplish?" required="" rows="5"></textarea></label>
 <label aria-hidden="true" class="hp-field"><span>Company URL</span><input autocomplete="off" name="company_url" tabindex="-1" type="text"/></label>
 <button class="submit" type="submit"><span>SEND IT</span><span class="submit-circle">↗</span></button>
-<p class="form-note">No mailing list. No resale. Just your inquiry.</p>
+<p class="form-note">No mailing list. No resale. Your information is used only to respond to this inquiry.</p>
 <div aria-live="polite" class="form-status" id="projectFormStatus" role="status"></div>
 <div aria-hidden="true" class="success-meta"><p><strong style="color:var(--ink)">That’s in.</strong><br/>I’ll review the details personally and reach out directly if the fit makes sense.</p><div class="success-badge">✓</div></div>
 </form>
 <iframe aria-hidden="true" class="lead-sink" name="leadSink" title="Submission target"></iframe>
 </div>
 </main>
-<footer><span>WebDotMe®<br/>Independent web design</span><span style="text-align:right">Philadelphia<br/>© 2026</span></footer>
+<footer><span>WebDotMe®<br/><a href="../privacy/">Privacy</a></span><span style="text-align:right"><a href="mailto:webdotme.design@gmail.com">webdotme.design@gmail.com</a><br/>Philadelphia · Bucks · Montgomery</span></footer>
 <script src="../assets/site.js"></script>
 </body></html>
