@@ -26,6 +26,9 @@
 .field textarea{resize:vertical;min-height:125px;font-size:16px;line-height:1.42}
 .field input::placeholder,.field textarea::placeholder{color:#53544f}
 .field select{color:#b9b8b2;padding-right:24px;background-image:linear-gradient(45deg,transparent 50%,var(--acid) 50%),linear-gradient(135deg,var(--acid) 50%,transparent 50%);background-position:calc(100% - 10px) 50%,calc(100% - 5px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+@media(max-width:759px){
+  .field input,.field textarea,.field select{font-size:16px!important;touch-action:manipulation}
+}
 .need-group{border:0;padding:0;margin:0}.need-options{margin-top:13px;display:flex;flex-wrap:wrap;gap:8px}.need-options label{cursor:pointer}.need-options input{position:absolute;opacity:0}.need-options span{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:999px;color:#b9b8b2;font-size:10px;transition:.25s}.need-options input:checked+span{background:var(--acid);border-color:var(--acid);color:#050505}
 .submit{appearance:none;border:0;background:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:28px;font-weight:780;letter-spacing:-.05em;cursor:pointer}
 .submit-circle{width:52px;height:52px;border-radius:50%;background:var(--acid);color:#050505;display:grid;place-items:center;font-size:18px;transition:transform .3s var(--ease)}
