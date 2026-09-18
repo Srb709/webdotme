@@ -1,0 +1,32 @@
+name: Optimize portfolio images
+
+on:
+  push:
+    paths:
+      - ".github/workflows/optimize-portfolio-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save sharp
+      - run: node scripts/optimize-portfolio-images.mjs
+      - name: Commit optimized assets
+        run: |
+          git config user.name "webdotme-image-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/portfolio
+          if git diff --cached --quiet; then
+            echo "No image changes"
+          else
+            git commit -m "Add optimized portfolio images"
+            git push
+          fi
