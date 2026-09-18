@@ -1029,6 +1029,8 @@ footer{
 .screen-frame img{
 	transition:transform .85s var(--ease),filter .6s ease;
 }
+.lute-images img,
+.case-hero-images img{height:auto}
 .browser:hover .lute-images img:first-child{
 	transform:rotate(-5deg) translate3d(-1.5%,-1.5%,0) scale(1.025);
 }
