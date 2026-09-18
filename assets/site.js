@@ -1,4 +1,17 @@
 (() => {
+  // Vercel Web Analytics is first-party and cookie-free. Queue page views and
+  // custom events immediately, then load the production collector.
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
+
+  if (!document.querySelector('script[src="/_vercel/insights/script.js"]')) {
+    const analyticsScript = document.createElement('script');
+    analyticsScript.src = '/_vercel/insights/script.js';
+    analyticsScript.defer = true;
+    document.head.appendChild(analyticsScript);
+  }
+
   const body = document.body;
   const menu = document.querySelector('.menu');
   const open = document.querySelector('[data-menu-open]');
@@ -113,15 +126,15 @@
 		document.querySelectorAll('.reveal, .reveal-left').forEach((element) => revealObserver.observe(element));
 	}
 
-  // Conversion measurement. Events are queued now and flow into Google Analytics
-  // as soon as the production measurement ID is connected.
+  // Conversion measurement. Vercel Web Analytics receives only event names and
+  // non-personal context; inquiry contents are never included.
   const track = (eventName, params = {}) => {
+    if (typeof window.va === 'function') {
+      window.va('event', { name: eventName, data: params });
+    }
     if (typeof window.gtag === 'function') {
       window.gtag('event', eventName, params);
-      return;
     }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName, ...params });
   };
 
   document.addEventListener('click', (event) => {
@@ -176,8 +189,7 @@ Budget: ${payload.budget || 'Not selected'}
 Project:
 ${payload.project}`;
 
-      track('generate_lead', {
-        form_name: 'project_inquiry',
+      track('project_form_completed', {
         contact_method: 'sms',
         selected_services: payload.needs.join(', ')
       });
@@ -186,4 +198,3 @@ ${payload.project}`;
     });
   }
 })();
-
