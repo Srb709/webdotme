@@ -31,6 +31,55 @@
   const transition = document.querySelector('.page-transition');
   const ptTitle = transition?.querySelector('.pt-title');
 
+	const breadcrumbRoutes = {
+		'/services/website-design/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
+			{ name: 'Website Design', item: 'https://www.webdotme.com/services/website-design/' }
+		],
+		'/services/website-development/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
+			{ name: 'Website Development', item: 'https://www.webdotme.com/services/website-development/' }
+		],
+		'/services/local-seo/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
+			{ name: 'Local SEO', item: 'https://www.webdotme.com/services/local-seo/' }
+		],
+		'/services/website-support/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
+			{ name: 'Website Support', item: 'https://www.webdotme.com/services/website-support/' }
+		],
+		'/work/little-lute-studio/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Work', item: 'https://www.webdotme.com/work/' },
+			{ name: 'Little Lute Studio', item: 'https://www.webdotme.com/work/little-lute-studio/' }
+		],
+		'/work/washington-benefits-group/': [
+			{ name: 'Home', item: 'https://www.webdotme.com/' },
+			{ name: 'Work', item: 'https://www.webdotme.com/work/' },
+			{ name: 'Washington Benefits Group', item: 'https://www.webdotme.com/work/washington-benefits-group/' }
+		]
+	};
+	const breadcrumbItems = breadcrumbRoutes[window.location.pathname];
+	if (breadcrumbItems) {
+		const breadcrumbScript = document.createElement('script');
+		breadcrumbScript.type = 'application/ld+json';
+		breadcrumbScript.textContent = JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'BreadcrumbList',
+			itemListElement: breadcrumbItems.map((crumb, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				name: crumb.name,
+				item: crumb.item
+			}))
+		});
+		document.head.appendChild(breadcrumbScript);
+	}
+
   const resetRouteState = () => {
     body.classList.remove('transitioning', 'page-enter', 'menu-open');
     open?.setAttribute('aria-expanded', 'false');
