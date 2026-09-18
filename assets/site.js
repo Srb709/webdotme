@@ -141,10 +141,13 @@
     const link = event.target.closest('a');
     if (!link) return;
     const href = link.getAttribute('href') || '';
-    if (href.startsWith('mailto:')) track('email_click', { link_url: href });
-    if (href.startsWith('tel:')) track('phone_click', { link_url: href });
+    if (href.startsWith('mailto:')) track('email_click', { page: location.pathname });
+    if (href.startsWith('tel:')) track('phone_click', { page: location.pathname });
     if (/^https?:\/\//i.test(href) && !href.includes('webdotme.com')) {
-      track('outbound_click', { link_url: href });
+      track('outbound_click', {
+        destination: new URL(href).hostname,
+        page: location.pathname
+      });
     }
   });
 
@@ -157,7 +160,7 @@
     form.addEventListener('input', () => {
       if (form.dataset.started) return;
       form.dataset.started = 'true';
-      track('generate_lead_start', { form_name: 'project_inquiry' });
+      track('project_form_started', { page: location.pathname });
     }, { once: true });
 
     form.addEventListener('submit', (event) => {
