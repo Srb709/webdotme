@@ -179,6 +179,7 @@ main{position:relative;z-index:1}
 .lute-title{display:grid;font-family:Georgia,serif;font-size:clamp(49px,13.5vw,88px);line-height:.76;letter-spacing:-.06em;margin:8px 0 30px}
 .lute-title span:last-child{justify-self:end}
 .lute-images{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:center;padding:0 2px}
+.lute-images picture,.case-hero-images picture{display:contents}
 .lute-images img{width:100%;aspect-ratio:.81;object-fit:cover;box-shadow:0 12px 28px rgba(35,15,20,.12)}
 .lute-images img:first-child{transform:rotate(-3.5deg)}.lute-images img:last-child{transform:rotate(2deg) translateY(10px)}
 .lute-copy{margin-top:29px;font-family:"Courier New",monospace;font-size:6px;line-height:1.7;letter-spacing:.22em;text-transform:uppercase}

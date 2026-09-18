@@ -1547,3 +1547,7 @@ body::after{display:none!important}
 		gap:clamp(48px,7vw,100px);
 	}
 }
+
+/* Footer contact details remain readable and comfortably tappable on mobile. */
+footer{color:#999a93}
+footer a{display:inline-flex;align-items:center;min-height:24px}
