@@ -1044,6 +1044,109 @@ footer{
 .screen-frame:hover img{
 	transform:scale(1.018);
 }
+.site-presentation{
+	display:block;
+	position:relative;
+	isolation:isolate;
+	margin:0 0 58px;
+	padding:9px;
+	border:1px solid var(--line);
+	background:#121212;
+	color:var(--ink);
+}
+.site-desktop-device{
+	display:block;
+	overflow:hidden;
+	border:1px solid rgba(255,255,255,.13);
+	border-radius:13px;
+	background:#0e0e0e;
+	box-shadow:0 26px 70px rgba(0,0,0,.34);
+}
+.site-device-bar{
+	height:38px;
+	display:flex;
+	align-items:center;
+	gap:7px;
+	padding:0 12px;
+	background:#171717;
+	color:#989992;
+	font-family:"Courier New",monospace;
+	font-size:7px;
+	font-style:normal;
+	letter-spacing:.06em;
+}
+.site-device-dots{display:flex;gap:5px}
+.site-device-dots i{display:block;width:6px;height:6px;border-radius:50%;background:#4c4d49}
+.site-device-bar b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}
+.site-device-bar em{margin-left:auto;color:var(--acid);font-style:normal;text-transform:uppercase;letter-spacing:.11em}
+.site-desktop-screen{
+	display:block;
+	overflow:hidden;
+	aspect-ratio:1.58;
+	background:#f5f3eb;
+}
+.site-desktop-screen img{
+	display:block;
+	width:100%;
+	height:auto;
+	transform-origin:top center;
+	transition:transform .9s var(--ease);
+}
+.site-phone-device{
+	display:block;
+	position:absolute;
+	right:4.5%;
+	bottom:-9%;
+	z-index:2;
+	width:clamp(104px,24%,195px);
+	padding:7px;
+	border:1px solid rgba(255,255,255,.28);
+	border-radius:24px;
+	background:#080808;
+	box-shadow:0 24px 58px rgba(0,0,0,.52);
+	transform:rotate(2deg);
+	transition:transform .7s var(--ease);
+}
+.site-phone-device img{display:block;width:100%;height:auto;border-radius:17px}
+.site-phone-speaker{
+	position:absolute;
+	top:11px;
+	left:50%;
+	z-index:3;
+	width:30%;
+	height:4px;
+	border-radius:999px;
+	background:rgba(0,0,0,.78);
+	transform:translateX(-50%);
+}
+.site-presentation-caption{
+	display:block;
+	position:absolute;
+	left:22px;
+	bottom:-30px;
+	color:var(--muted);
+	font-family:"Courier New",monospace;
+	font-size:7px;
+	letter-spacing:.13em;
+	text-transform:uppercase;
+}
+.site-presentation:hover .site-desktop-screen img{transform:scale(1.012)}
+.site-presentation:hover .site-phone-device{transform:rotate(0) translateY(-5px)}
+.site-presentation-wbg{border-color:rgba(205,227,219,.18);background:#102f27}
+.site-presentation-wbg .site-desktop-device{border-color:rgba(226,239,234,.25)}
+.site-presentation-wbg .site-device-bar{background:#173c32;color:#b8ccc5}
+.site-presentation-wbg .site-device-dots i{background:#66867d}
+.site-presentation-wbg .site-phone-device{background:#123d32;border-color:rgba(226,239,234,.38)}
+@media(max-width:759px){
+	.site-presentation{margin-bottom:54px;padding:6px}
+	.site-device-bar{height:32px;padding:0 9px}
+	.site-device-bar em{display:none}
+	.site-desktop-screen{aspect-ratio:1.08}
+	.site-phone-device{right:4%;bottom:-11%;width:31%;padding:5px;border-radius:19px}
+	.site-phone-device img{border-radius:14px}
+	.site-phone-speaker{top:8px;height:3px}
+	.site-presentation-caption{left:12px;bottom:-29px}
+}
 .project-row h2,
 .project-row .arrow{
 	transition:transform .5s var(--ease),color .3s ease;
@@ -1148,6 +1251,10 @@ body::after{
 		padding:26px;
 	}
 }
+
+/* Footer contact details remain readable and comfortably tappable on mobile. */
+footer{color:#999a93}
+footer a{display:inline-flex;align-items:center;min-height:24px}
 
 @media(min-width:1180px){
 	.problem-grid{
@@ -1561,7 +1668,3 @@ body[data-page-label="Washington Benefits"] .mf-lens-a{animation:none!important}
 		gap:clamp(48px,7vw,100px);
 	}
 }
-
-/* Footer contact details remain readable and comfortably tappable on mobile. */
-footer{color:#999a93}
-footer a{display:inline-flex;align-items:center;min-height:24px}
