@@ -1315,7 +1315,7 @@ body::after{display:none!important}
 }
 .wbg-sector{
 	margin:0 0 22px;
-	color:#57756d;
+	color:#36574e;
 	font-family:"Courier New",monospace;
 	font-size:9px;
 	line-height:1.45;
@@ -1369,7 +1369,7 @@ body::after{display:none!important}
 	align-items:center;
 	gap:6px;
 	padding:0 11px;
-	color:#80928d;
+	color:#526b64;
 }
 .wbg-browser-bar i,
 .wbg-showcase-bar i{
