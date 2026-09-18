@@ -163,7 +163,7 @@
         project: String(fd.get('project') || '')
       };
       const needs = payload.needs.length ? payload.needs.join(', ') : 'Not selected';
-      const draft = `Hey Steven — I just filled out the WebDotMe project form.
+      const draft = `Hey Steve — I just filled out the WebDotMe project form.
 
 Name: ${payload.name}
 Email: ${payload.email}
