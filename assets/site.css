@@ -1245,6 +1245,17 @@ body::after{display:none!important}
 .ambient::before{animation-duration:22s!important;opacity:.5!important}
 .ambient::after{animation-duration:38s!important;opacity:.34!important}
 .motion-field{transform:translateZ(0);backface-visibility:hidden}
+
+/* Case studies keep their page-entry and scroll reveals, but avoid continuously
+   repainting full-screen decorative layers on lower-powered devices. */
+body[data-page-label="Little Lute"] .ambient::before,
+body[data-page-label="Little Lute"] .ambient::after,
+body[data-page-label="Little Lute"] .mf-plane-a,
+body[data-page-label="Little Lute"] .mf-lens-a,
+body[data-page-label="Washington Benefits"] .ambient::before,
+body[data-page-label="Washington Benefits"] .ambient::after,
+body[data-page-label="Washington Benefits"] .mf-plane-a,
+body[data-page-label="Washington Benefits"] .mf-lens-a{animation:none!important}
 @media(max-width:759px){
   .home-hero-v2{min-height:100svh;padding-top:94px}
   .brand-wordmark{width:100%;font-size:clamp(78px,25vw,118px);line-height:.73}
