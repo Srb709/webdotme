@@ -1038,6 +1038,7 @@ footer{
 .screen-frame{
 	overflow:hidden;
 }
+.screen-frame img{height:auto}
 .screen-frame:hover img{
 	transform:scale(1.018);
 }
