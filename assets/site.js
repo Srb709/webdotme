@@ -12,6 +12,18 @@
     document.head.appendChild(analyticsScript);
   }
 
+  // Collect real-user Core Web Vitals through Vercel Speed Insights.
+  window.si = window.si || function () {
+    (window.siq = window.siq || []).push(arguments);
+  };
+
+  if (!document.querySelector('script[src="/_vercel/speed-insights/script.js"]')) {
+    const speedInsightsScript = document.createElement('script');
+    speedInsightsScript.src = '/_vercel/speed-insights/script.js';
+    speedInsightsScript.defer = true;
+    document.head.appendChild(speedInsightsScript);
+  }
+
   const body = document.body;
   const menu = document.querySelector('.menu');
   const open = document.querySelector('[data-menu-open]');
