@@ -50,6 +50,81 @@
 	transform: scale(1.025);
 }
 
+#foundry .wdm-foundry-photo {
+	transform-origin: center center;
+	will-change: transform;
+	animation: wdm-foundry-project-pan 10.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+#foundry .wdm-foundry-word {
+	will-change: transform;
+	animation: wdm-foundry-project-type 7.5s ease-in-out infinite alternate;
+}
+
+#monolith .wdm-monolith-grid {
+	will-change: background-position;
+	animation: wdm-monolith-project-grid 15s linear infinite;
+}
+
+#monolith .wdm-monolith-shape {
+	transform-origin: 55% 45%;
+	will-change: transform;
+	animation: wdm-monolith-project-shape 8.5s ease-in-out infinite alternate;
+}
+
+#monolith .wdm-monolith-copy {
+	will-change: transform;
+	animation: wdm-monolith-project-type 7s ease-in-out infinite alternate;
+}
+
+@keyframes wdm-foundry-project-pan {
+	0% {
+		transform: scale(1.035) translate3d(-1.2%, 0, 0);
+	}
+	50% {
+		transform: scale(1.08) translate3d(0.8%, -0.8%, 0);
+	}
+	100% {
+		transform: scale(1.12) translate3d(1.8%, -1.5%, 0);
+	}
+}
+
+@keyframes wdm-foundry-project-type {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, -5px, 0);
+	}
+}
+
+@keyframes wdm-monolith-project-grid {
+	from {
+		background-position: 0 0, 0 0;
+	}
+	to {
+		background-position: 64px 64px, 64px 64px;
+	}
+}
+
+@keyframes wdm-monolith-project-shape {
+	0% {
+		transform: translate3d(-2%, 2%, 0) rotate(-1.2deg) scale(0.98);
+	}
+	100% {
+		transform: translate3d(3%, -3%, 0) rotate(1.6deg) scale(1.035);
+	}
+}
+
+@keyframes wdm-monolith-project-type {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(4px, -6px, 0);
+	}
+}
+
 .wdm-portal-fallback.wdm-lute-fallback {
 	display: none;
 }
@@ -412,6 +487,18 @@
 		font-size: clamp(35px, 10.5vw, 48px) !important;
 	}
 
+	#foundry .wdm-foundry-photo {
+		animation-duration: 8.5s;
+	}
+
+	#monolith .wdm-monolith-grid {
+		animation-duration: 11s;
+	}
+
+	#monolith .wdm-monolith-shape {
+		animation-duration: 7s;
+	}
+
 	.wdm-underhood-grid,
 	.wdm-about-grid,
 	.wdm-local-grid,
@@ -531,7 +618,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.wdm-project-portal:hover .wdm-site-shot img {
-		transform: none;
+	.wdm-project-portal:hover .wdm-site-shot img,
+	#foundry .wdm-foundry-photo,
+	#foundry .wdm-foundry-word,
+	#monolith .wdm-monolith-grid,
+	#monolith .wdm-monolith-shape,
+	#monolith .wdm-monolith-copy {
+		animation: none !important;
+		transform: none !important;
 	}
 }
