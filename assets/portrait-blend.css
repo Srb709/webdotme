@@ -55,4 +55,102 @@
 		filter: grayscale(0.1) saturate(0.62) contrast(1.07) brightness(0.82);
 		transform: scale(1.02);
 	}
+
+	.wdm-about-grid {
+		gap: 30px !important;
+		margin-top: 48px !important;
+	}
+
+	.wdm-about-photo {
+		position: relative !important;
+		top: auto !important;
+		width: 100% !important;
+		max-width: none !important;
+		height: auto !important;
+		max-height: none !important;
+		aspect-ratio: 4 / 5 !important;
+		justify-self: stretch !important;
+		margin: 0 !important;
+		overflow: hidden !important;
+		border: 1px solid rgba(244, 241, 233, 0.12);
+		background: #0a0a0a !important;
+		box-shadow: none !important;
+	}
+
+	.wdm-about-photo img {
+		display: block !important;
+		width: 100% !important;
+		height: 100% !important;
+		aspect-ratio: auto !important;
+		object-fit: cover !important;
+		object-position: 52% 42% !important;
+		filter: grayscale(0.08) saturate(0.74) contrast(1.05) brightness(0.9) !important;
+		transform: none !important;
+	}
+
+	.wdm-about-photo::before {
+		content: "PHL / DIRECT FROM THE DESIGNER" !important;
+		inset: auto !important;
+		top: 14px !important;
+		left: 14px !important;
+		bottom: auto !important;
+		right: auto !important;
+		z-index: 4 !important;
+		padding: 7px 9px !important;
+		border: 1px solid rgba(255, 255, 255, 0.13) !important;
+		background: rgba(7, 7, 7, 0.68) !important;
+		backdrop-filter: blur(8px) !important;
+		font-size: 7px !important;
+		letter-spacing: 0.12em !important;
+		text-transform: uppercase !important;
+		color: #c4c4bd !important;
+	}
+
+	.wdm-about-photo::after {
+		content: "" !important;
+		inset: 0 !important;
+		z-index: 3 !important;
+		background: linear-gradient(to bottom, transparent 62%, rgba(7, 7, 7, 0.12) 76%, rgba(7, 7, 7, 0.72) 94%, var(--bg) 100%) !important;
+		mix-blend-mode: normal !important;
+		opacity: 1 !important;
+		box-shadow: none !important;
+	}
+
+	.wdm-about-copy {
+		margin-top: 0 !important;
+	}
+
+	.wdm-about-copy h2 {
+		max-width: 7ch !important;
+		font-size: clamp(48px, 13vw, 62px) !important;
+		line-height: 0.87 !important;
+	}
+
+	#foundry .wdm-portal-topbar > span:nth-child(2),
+	#monolith .wdm-portal-topbar > span:nth-child(2) {
+		font-size: 0 !important;
+	}
+
+	#foundry .wdm-portal-topbar > span:nth-child(2)::after,
+	#monolith .wdm-portal-topbar > span:nth-child(2)::after {
+		font-size: 7px;
+		font-weight: 760;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	#foundry .wdm-portal-topbar > span:nth-child(2)::after {
+		content: "Foundry No. 9";
+	}
+
+	#monolith .wdm-portal-topbar > span:nth-child(2)::after {
+		content: "MØNOLITH";
+	}
+}
+
+@media (max-width: 600px) {
+	#foundry .wdm-portal-topbar > span:nth-child(2)::after,
+	#monolith .wdm-portal-topbar > span:nth-child(2)::after {
+		font-size: 6px;
+	}
 }
