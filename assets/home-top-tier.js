@@ -1,6 +1,13 @@
 (() => {
 	"use strict";
 
+	if (!document.querySelector('link[href="/assets/portrait-blend.css"]')) {
+		const portraitStylesheet = document.createElement("link");
+		portraitStylesheet.rel = "stylesheet";
+		portraitStylesheet.href = "/assets/portrait-blend.css";
+		document.head.appendChild(portraitStylesheet);
+	}
+
 	const body = document.body;
 	const root = document.documentElement;
 	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
