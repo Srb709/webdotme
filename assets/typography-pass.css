@@ -80,3 +80,13 @@ body {
 #monolith .wdm-project-index {
 	font-family: var(--monolith-preview-mono);
 }
+
+@media (min-width: 901px) {
+	.wdm-hero-title {
+		width: 100%;
+		max-width: 100%;
+		font-size: clamp(74px, 9.8vw, 180px);
+		line-height: 0.8;
+		letter-spacing: -0.078em;
+	}
+}
