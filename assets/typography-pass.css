@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+	--sans: "Inter Tight", Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+	--serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+	--foundry-preview-serif: "Bodoni Moda", "Times New Roman", serif;
+	--monolith-preview-sans: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+	--monolith-preview-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+body {
+	font-family: var(--sans);
+}
+
+.wdm-hero-title,
+.wdm-project-copy h3,
+.wdm-work-intro h2,
+.wdm-underhood-copy h2,
+.wdm-about-copy h2,
+.wdm-local h2,
+.wdm-final h2,
+.page-hero h1,
+.next-page strong,
+.project-row-title,
+.form-intro h1 {
+	font-family: var(--sans);
+}
+
+.wdm-hero-title .wdm-serif,
+.wdm-hero-intro em,
+.wdm-manifesto-copy em,
+.wdm-project-copy h3 em,
+.wdm-underhood-copy h2 em,
+.wdm-about-copy h2 em,
+.wdm-local h2 em,
+.wdm-final h2 em,
+.page-hero h1 em,
+.pullquote em,
+.about-manifesto h2 em,
+.form-intro h1 em {
+	font-family: var(--serif);
+	font-weight: 400;
+}
+
+.wdm-foundry-word,
+.wdm-showcase-foundry-copy {
+	font-family: var(--foundry-preview-serif);
+	font-weight: 500;
+	letter-spacing: -0.055em;
+}
+
+.wdm-foundry-word em,
+.wdm-showcase-foundry-copy em {
+	font-family: var(--foundry-preview-serif);
+	font-style: italic;
+	font-weight: 400;
+	letter-spacing: -0.035em;
+}
+
+.wdm-monolith-copy,
+.wdm-showcase-mono-copy {
+	font-family: var(--monolith-preview-sans);
+	font-weight: 600;
+	letter-spacing: -0.065em;
+}
+
+.wdm-monolith-copy em,
+.wdm-showcase-mono-copy em {
+	font-family: var(--monolith-preview-mono);
+	font-style: normal;
+	font-weight: 500;
+	letter-spacing: -0.035em;
+	text-transform: uppercase;
+}
+
+.wdm-monolith-fallback .wdm-portal-topbar,
+.wdm-showcase-panel[data-project="monolith"] + .wdm-showcase-live,
+#monolith .wdm-project-type,
+#monolith .wdm-project-tags,
+#monolith .wdm-project-index {
+	font-family: var(--monolith-preview-mono);
+}
