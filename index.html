@@ -25,8 +25,9 @@
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.webdotme.com/#website","url":"https://www.webdotme.com/","name":"WebDotMe","publisher":{"@id":"https://www.webdotme.com/#business"}},{"@type":["ProfessionalService","Organization"],"@id":"https://www.webdotme.com/#business","name":"WebDotMe","url":"https://www.webdotme.com/","email":"webdotme.design@gmail.com","telephone":"+1-215-779-9288","logo":"https://www.webdotme.com/assets/favicon.svg","image":"https://www.webdotme.com/assets/steve-brooks-office.webp","founder":{"@type":"Person","name":"Steve Brooks","image":"https://www.webdotme.com/assets/steve-brooks-office.webp"},"description":"Independent Philadelphia web designer and developer creating custom, mobile-first websites and local search foundations for businesses and independent brands.","areaServed":[{"@type":"City","name":"Philadelphia"},{"@type":"AdministrativeArea","name":"Bucks County"},{"@type":"AdministrativeArea","name":"Montgomery County"}],"knowsAbout":["Web design","Website development","Local SEO","Mobile-first design","Website maintenance","Front-end development","Interaction design","Responsive web design"]}]}</script>
 	<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 	<link href="assets/home-top-tier.css" rel="stylesheet"/>
+	<link href="assets/home-polish.css" rel="stylesheet"/>
 </head>
-<body>
+<body data-page-label="Home">
 	<a class="skip-link" href="#main">Skip to content</a>
 	<div aria-hidden="true" class="wdm-grain"></div>
 	<div aria-hidden="true" class="wdm-cursor"></div>
@@ -50,7 +51,7 @@
 	</header>
 
 	<nav aria-label="Mobile" class="wdm-menu" id="wdm-menu">
-		<a href="#work"><span>Work</span><small>01</small></a>
+		<a href="/work/"><span>Work</span><small>01</small></a>
 		<a href="/services/"><span>Services</span><small>02</small></a>
 		<a href="/about/"><span>About</span><small>03</small></a>
 		<a href="/start-a-project/"><span>Start</span><small>04</small></a>
@@ -66,7 +67,7 @@
 				<span>Independent web designer + developer / Philadelphia</span>
 				<span>Strategy / Design / Development / Search / Motion</span>
 			</div>
-			<h1 class="wdm-hero-title" aria-label="I build the part people meet first">
+			<h1 aria-label="I build the part people meet first" class="wdm-hero-title">
 				<span><i>I build the</i></span>
 				<span><i>part people</i></span>
 				<span><i class="wdm-serif">meet first.</i></span>
@@ -132,10 +133,16 @@
 							<span>React</span>
 							<span>Tailwind</span>
 						</div>
-						<a class="wdm-project-link" href="/work/little-lute-studio/">
-							<span>View the case study</span>
-							<span aria-hidden="true" class="clean-arrow"></span>
-						</a>
+						<div class="wdm-project-actions">
+							<a class="wdm-project-link" href="/work/little-lute-studio/">
+								<span>View the case study</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+							<a class="wdm-project-link" href="https://littlelutestudio.com" rel="noopener" target="_blank">
+								<span>Open live website</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+						</div>
 					</div>
 					<div class="wdm-project-portal wdm-reveal">
 						<div class="wdm-portal-topbar">
@@ -143,13 +150,10 @@
 							<span>littlelutestudio.com</span>
 							<span>Client work</span>
 						</div>
-						<div class="wdm-portal-fallback wdm-lute-fallback">
-							<div class="wdm-lute-title"><span>Little</span><span>Lute</span><span>Studio</span></div>
-							<div class="wdm-lute-image">
-								<img alt="Cream sweatshirt embroidered with the Little Lute Studio logo" decoding="async" height="1448" loading="lazy" src="assets/portfolio/little-lute-embroidery-800.webp" width="1086"/>
-							</div>
-							<div class="wdm-lute-note">Embroidery + mobile spray tanning<br/>Philadelphia, Pennsylvania</div>
+						<div class="wdm-site-shot">
+							<img alt="Little Lute Studio website shown in its finished desktop layout" decoding="async" height="900" loading="lazy" src="assets/portfolio/little-lute-site-desktop.webp" width="1440"/>
 						</div>
+						<a aria-label="Open Little Lute Studio website" class="wdm-portal-overlay-link" href="https://littlelutestudio.com" rel="noopener" target="_blank"></a>
 					</div>
 				</div>
 			</article>
@@ -167,23 +171,28 @@
 							<span>Interaction design</span>
 							<span>Responsive art direction</span>
 						</div>
-						<a class="wdm-project-link" href="https://foundry-no-9.vercel.app" rel="noopener" target="_blank">
-							<span>Open the live concept</span>
-							<span aria-hidden="true" class="clean-arrow"></span>
-						</a>
+						<div class="wdm-project-actions">
+							<a class="wdm-project-link" href="/work/foundry-no-9/">
+								<span>View the case study</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+							<a class="wdm-project-link" href="https://foundry-no-9.vercel.app" rel="noopener" target="_blank">
+								<span>Open the live concept</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+						</div>
 					</div>
 					<div class="wdm-project-portal wdm-reveal">
 						<div class="wdm-portal-topbar">
 							<span class="wdm-browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
 							<span>foundry-no-9.vercel.app</span>
-							<span>Live concept</span>
+							<span>Concept</span>
 						</div>
 						<div class="wdm-portal-fallback wdm-foundry-fallback">
 							<div aria-hidden="true" class="wdm-foundry-photo"></div>
 							<div class="wdm-foundry-word">Objects made to <em>outlive us.</em></div>
 							<div class="wdm-foundry-meta"><span>Foundry No. 9</span><span>Objects / Philadelphia</span></div>
 						</div>
-						<iframe aria-hidden="true" class="wdm-live-frame" data-src="https://foundry-no-9.vercel.app" loading="lazy" tabindex="-1" title="Live preview of Foundry No. 9"></iframe>
 						<a aria-label="Open Foundry No. 9 live concept" class="wdm-portal-overlay-link" href="https://foundry-no-9.vercel.app" rel="noopener" target="_blank"></a>
 					</div>
 				</div>
@@ -202,10 +211,16 @@
 							<span>GLSL</span>
 							<span>GSAP</span>
 						</div>
-						<a class="wdm-project-link" href="https://monolith-architecture-gamma.vercel.app" rel="noopener" target="_blank">
-							<span>Enter the live experience</span>
-							<span aria-hidden="true" class="clean-arrow"></span>
-						</a>
+						<div class="wdm-project-actions">
+							<a class="wdm-project-link" href="/work/monolith-architecture/">
+								<span>View the case study</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+							<a class="wdm-project-link" href="https://monolith-architecture-gamma.vercel.app" rel="noopener" target="_blank">
+								<span>Enter the live experience</span>
+								<span aria-hidden="true" class="clean-arrow"></span>
+							</a>
+						</div>
 					</div>
 					<div class="wdm-project-portal wdm-reveal">
 						<div class="wdm-portal-topbar">
@@ -218,11 +233,17 @@
 							<div aria-hidden="true" class="wdm-monolith-shape"><span></span><span></span><span></span></div>
 							<div class="wdm-monolith-copy">We shape <em>empty space.</em></div>
 						</div>
-						<iframe aria-hidden="true" class="wdm-live-frame" data-src="https://monolith-architecture-gamma.vercel.app" loading="lazy" tabindex="-1" title="Live preview of MØNOLITH Architecture"></iframe>
 						<a aria-label="Open MØNOLITH Architecture live concept" class="wdm-portal-overlay-link" href="https://monolith-architecture-gamma.vercel.app" rel="noopener" target="_blank"></a>
 					</div>
 				</div>
 			</article>
+
+			<div class="wdm-work-more">
+				<a class="wdm-line-link" href="/work/">
+					<span>View all work and case studies</span>
+					<span aria-hidden="true" class="clean-arrow"></span>
+				</a>
+			</div>
 		</section>
 
 		<section class="wdm-section wdm-underhood">
@@ -292,7 +313,7 @@
 					<div class="wdm-about-copy wdm-reveal">
 						<h2>Self-taught. <em>Obsessive</em> about details.</h2>
 						<p>I’m Steve Brooks. WebDotMe is intentionally small. You talk to me, I do the design, I write the code, I test the phone version, I launch it, and I am still here when the business needs something after launch.</p>
-						<div class="wdm-learning" aria-label="Development learning path and technical focus">
+						<div aria-label="Development learning path and technical focus" class="wdm-learning">
 							<div class="wdm-learning-row"><span>01</span><strong>The Odin Project</strong><span>Web foundations / problem solving</span></div>
 							<div class="wdm-learning-row"><span>02</span><strong>Zero to Mastery</strong><span>JavaScript / React / modern workflow</span></div>
 							<div class="wdm-learning-row"><span>03</span><strong>OOP + application architecture</strong><span>Reusable systems / maintainable code</span></div>
@@ -350,6 +371,7 @@
 		</div>
 	</footer>
 
+	<script defer src="assets/site.js"></script>
 	<script defer src="assets/home-top-tier.js"></script>
 </body>
 </html>
