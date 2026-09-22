@@ -1,0 +1,185 @@
+/* WebDotMe launch cleanup layer. Visual-safe overrides only. */
+
+.wdm-showcase-live {
+	display: none !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+}
+
+.wdm-showcase-stage.is-live .wdm-showcase-live {
+	display: none !important;
+	opacity: 0 !important;
+}
+
+.wdm-showcase-stage.is-live .wdm-showcase-panel.is-active {
+	opacity: 1 !important;
+	visibility: visible !important;
+	transform: scale(1) !important;
+}
+
+.wdm-showcase-status {
+	font-size: 0 !important;
+}
+
+.wdm-showcase-status::after {
+	content: "Motion preview";
+	font-size: 7px;
+	font-weight: 760;
+	letter-spacing: 0.11em;
+	text-transform: uppercase;
+}
+
+.wdm-philly-image {
+	background-image: url("/assets/philly-architecture-local.svg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.wdm-philly-image img {
+	opacity: 0;
+}
+
+body[data-page-label="Services"] .next-page strong {
+	font-size: 0 !important;
+}
+
+body[data-page-label="Services"] .next-page strong::after {
+	content: "Meet the person behind it.";
+	font-size: clamp(38px, 6vw, 86px);
+	line-height: 0.9;
+	letter-spacing: -0.06em;
+}
+
+.work-feature-screen {
+	overflow: hidden;
+}
+
+.work-feature-screen img {
+	min-height: 142%;
+	height: auto;
+	animation: wdm-work-preview-scroll 15s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.work-feature-concept.foundry {
+	background-size: 108% 108%;
+	animation: wdm-work-foundry-pan 12s ease-in-out infinite alternate;
+}
+
+.work-feature-concept.foundry .concept-title {
+	animation: wdm-work-type-drift 7.5s ease-in-out infinite alternate;
+	will-change: transform;
+}
+
+.work-feature-concept.monolith::before {
+	animation: wdm-work-grid-drift 16s linear infinite;
+}
+
+.work-feature-concept.monolith::after {
+	animation: wdm-work-mono-float 8.5s ease-in-out infinite alternate;
+	transform-origin: center center;
+}
+
+.work-feature-concept.monolith .concept-title {
+	animation: wdm-work-type-drift 7s ease-in-out infinite alternate;
+	will-change: transform;
+}
+
+@keyframes wdm-work-preview-scroll {
+	0% {
+		transform: translate3d(0, 0, 0) scale(1.01);
+	}
+	100% {
+		transform: translate3d(0, -24%, 0) scale(1.03);
+	}
+}
+
+@keyframes wdm-work-foundry-pan {
+	0% {
+		background-position: 48% 50%;
+	}
+	100% {
+		background-position: 56% 45%;
+	}
+}
+
+@keyframes wdm-work-grid-drift {
+	from {
+		background-position: 0 0, 0 0;
+	}
+	to {
+		background-position: 46px 46px, 46px 46px;
+	}
+}
+
+@keyframes wdm-work-mono-float {
+	0% {
+		transform: rotate(34deg) skew(-8deg, -8deg) translate3d(-1%, 1%, 0) scale(0.98);
+	}
+	100% {
+		transform: rotate(34deg) skew(-8deg, -8deg) translate3d(3%, -3%, 0) scale(1.04);
+	}
+}
+
+@keyframes wdm-work-type-drift {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(4px, -6px, 0);
+	}
+}
+
+@media (max-width: 600px) {
+	body[data-page-label="Services"] .next-page strong::after {
+		font-size: clamp(34px, 11vw, 50px);
+	}
+
+	.work-feature-screen img {
+		min-height: 128%;
+		animation-duration: 11s;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.001ms !important;
+	}
+
+	.wdm-showcase-lute-scroll img,
+	.wdm-showcase-foundry-photo,
+	.wdm-showcase-mono-grid,
+	.wdm-showcase-mono-geometry,
+	.wdm-foundry-photo,
+	.wdm-foundry-word,
+	.wdm-monolith-grid,
+	.wdm-monolith-shape,
+	.wdm-monolith-copy,
+	.work-feature-screen img,
+	.work-feature-concept.foundry,
+	.work-feature-concept.foundry .concept-title,
+	.work-feature-concept.monolith::before,
+	.work-feature-concept.monolith::after,
+	.work-feature-concept.monolith .concept-title,
+	.ambient::before,
+	.ambient::after {
+		animation: none !important;
+		transform: none !important;
+	}
+
+	.wdm-reveal,
+	.reveal,
+	.reveal-left {
+		opacity: 1 !important;
+		transform: none !important;
+	}
+}
