@@ -1,264 +1,255 @@
 (() => {
-  // Vercel Web Analytics is first-party and cookie-free. Queue page views and
-  // custom events immediately, then load the production collector.
-  window.va = window.va || function () {
-    (window.vaq = window.vaq || []).push(arguments);
-  };
+	"use strict";
 
-  if (!document.querySelector('script[src="/_vercel/insights/script.js"]')) {
-    const analyticsScript = document.createElement('script');
-    analyticsScript.src = '/_vercel/insights/script.js';
-    analyticsScript.defer = true;
-    document.head.appendChild(analyticsScript);
-  }
+	window.va = window.va || function () {
+		(window.vaq = window.vaq || []).push(arguments);
+	};
 
-  // Collect real-user Core Web Vitals through Vercel Speed Insights.
-  window.si = window.si || function () {
-    (window.siq = window.siq || []).push(arguments);
-  };
+	if (!document.querySelector('script[src="/_vercel/insights/script.js"]')) {
+		const analyticsScript = document.createElement("script");
+		analyticsScript.src = "/_vercel/insights/script.js";
+		analyticsScript.defer = true;
+		document.head.appendChild(analyticsScript);
+	}
 
-  if (!document.querySelector('script[src="/_vercel/speed-insights/script.js"]')) {
-    const speedInsightsScript = document.createElement('script');
-    speedInsightsScript.src = '/_vercel/speed-insights/script.js';
-    speedInsightsScript.defer = true;
-    document.head.appendChild(speedInsightsScript);
-  }
+	window.si = window.si || function () {
+		(window.siq = window.siq || []).push(arguments);
+	};
 
-  const body = document.body;
-  const menu = document.querySelector('.menu');
-  const open = document.querySelector('[data-menu-open]');
-  const close = document.querySelector('[data-menu-close]');
-  const transition = document.querySelector('.page-transition');
-  const ptTitle = transition?.querySelector('.pt-title');
+	if (!document.querySelector('script[src="/_vercel/speed-insights/script.js"]')) {
+		const speedScript = document.createElement("script");
+		speedScript.src = "/_vercel/speed-insights/script.js";
+		speedScript.defer = true;
+		document.head.appendChild(speedScript);
+	}
+
+	const body = document.body;
+	const menu = document.querySelector(".menu");
+	const openButton = document.querySelector("[data-menu-open]");
+	const closeButton = document.querySelector("[data-menu-close]");
+	const transition = document.querySelector(".page-transition");
+	const transitionTitle = transition?.querySelector(".pt-title");
+	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 	const breadcrumbRoutes = {
-		'/services/website-design/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
-			{ name: 'Website Design', item: 'https://www.webdotme.com/services/website-design/' }
-		],
-		'/services/website-development/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
-			{ name: 'Website Development', item: 'https://www.webdotme.com/services/website-development/' }
-		],
-		'/services/local-seo/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
-			{ name: 'Local SEO', item: 'https://www.webdotme.com/services/local-seo/' }
-		],
-		'/services/website-support/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Services', item: 'https://www.webdotme.com/services/' },
-			{ name: 'Website Support', item: 'https://www.webdotme.com/services/website-support/' }
-		],
-		'/work/little-lute-studio/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Work', item: 'https://www.webdotme.com/work/' },
-			{ name: 'Little Lute Studio', item: 'https://www.webdotme.com/work/little-lute-studio/' }
-		],
-		'/work/washington-benefits-group/': [
-			{ name: 'Home', item: 'https://www.webdotme.com/' },
-			{ name: 'Work', item: 'https://www.webdotme.com/work/' },
-			{ name: 'Washington Benefits Group', item: 'https://www.webdotme.com/work/washington-benefits-group/' }
-		]
+		"/services/website-design/": ["Home", "Services", "Website Design"],
+		"/services/website-development/": ["Home", "Services", "Website Development"],
+		"/services/local-seo/": ["Home", "Services", "Local SEO"],
+		"/services/website-support/": ["Home", "Services", "Website Support"],
+		"/work/little-lute-studio/": ["Home", "Work", "Little Lute Studio"],
+		"/work/foundry-no-9/": ["Home", "Work", "Foundry No. 9"],
+		"/work/monolith-architecture/": ["Home", "Work", "MØNOLITH Architecture"]
 	};
-	const breadcrumbItems = breadcrumbRoutes[window.location.pathname];
-	if (breadcrumbItems) {
-		const breadcrumbScript = document.createElement('script');
-		breadcrumbScript.type = 'application/ld+json';
+
+	const routeUrls = {
+		Home: "https://www.webdotme.com/",
+		Services: "https://www.webdotme.com/services/",
+		Work: "https://www.webdotme.com/work/",
+		"Website Design": "https://www.webdotme.com/services/website-design/",
+		"Website Development": "https://www.webdotme.com/services/website-development/",
+		"Local SEO": "https://www.webdotme.com/services/local-seo/",
+		"Website Support": "https://www.webdotme.com/services/website-support/",
+		"Little Lute Studio": "https://www.webdotme.com/work/little-lute-studio/",
+		"Foundry No. 9": "https://www.webdotme.com/work/foundry-no-9/",
+		"MØNOLITH Architecture": "https://www.webdotme.com/work/monolith-architecture/"
+	};
+
+	const crumbs = breadcrumbRoutes[window.location.pathname];
+	if (crumbs) {
+		const breadcrumbScript = document.createElement("script");
+		breadcrumbScript.type = "application/ld+json";
 		breadcrumbScript.textContent = JSON.stringify({
-			'@context': 'https://schema.org',
-			'@type': 'BreadcrumbList',
-			itemListElement: breadcrumbItems.map((crumb, index) => ({
-				'@type': 'ListItem',
+			"@context": "https://schema.org",
+			"@type": "BreadcrumbList",
+			itemListElement: crumbs.map((name, index) => ({
+				"@type": "ListItem",
 				position: index + 1,
-				name: crumb.name,
-				item: crumb.item
+				name,
+				item: routeUrls[name]
 			}))
 		});
 		document.head.appendChild(breadcrumbScript);
 	}
 
-  const resetRouteState = () => {
-    body.classList.remove('transitioning', 'page-enter', 'menu-open');
-    open?.setAttribute('aria-expanded', 'false');
-  };
+	const stripArrowGlyphs = () => {
+		const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+		const nodes = [];
+		while (walker.nextNode()) nodes.push(walker.currentNode);
 
-  // Safari can restore a page from its back-forward cache with the outgoing
-  // transition class still applied. Clear it both before caching and on return.
-  window.addEventListener('pagehide', resetRouteState);
-  window.addEventListener('pageshow', () => {
-    resetRouteState();
-    requestAnimationFrame(resetRouteState);
-  });
+		nodes.forEach((node) => {
+			if (!/[↗→➜➝➞]/.test(node.nodeValue || "")) return;
+			node.nodeValue = (node.nodeValue || "").replace(/[↗→➜➝➞]/g, "").replace(/\s{2,}/g, " ").trimEnd();
+		});
 
-  const pageName = body.dataset.pageLabel || 'WebDotMe';
-  if (ptTitle) ptTitle.textContent = pageName;
-	requestAnimationFrame(() => {
-		body.classList.add('page-enter');
-		setTimeout(() => body.classList.remove('page-enter'), 820);
+		document.querySelectorAll("a").forEach((link) => {
+			if (
+				link.classList.contains("menu-link") ||
+				link.classList.contains("next-page") ||
+				link.classList.contains("button-line") ||
+				link.classList.contains("project-row") ||
+				link.classList.contains("nav-cta")
+			) return;
+
+			if (
+				link.classList.contains("service-deep-link") ||
+				link.closest(".contact-strip") ||
+				link.closest(".local-list") ||
+				link.closest(".article-body") ||
+				link.closest(".contact-shortcuts")
+			) {
+				link.classList.add("clean-arrow-link");
+			}
+		});
+	};
+
+	stripArrowGlyphs();
+
+	const resetRouteState = () => {
+		body.classList.remove("transitioning", "page-enter", "menu-open");
+		openButton?.setAttribute("aria-expanded", "false");
+	};
+
+	window.addEventListener("pagehide", resetRouteState);
+	window.addEventListener("pageshow", () => {
+		resetRouteState();
+		requestAnimationFrame(resetRouteState);
 	});
 
-  const toggleMenu = (state) => {
-    body.classList.toggle('menu-open', state);
-    open?.setAttribute('aria-expanded', state ? 'true' : 'false');
-  };
-  open?.addEventListener('click', () => toggleMenu(true));
-  close?.addEventListener('click', () => toggleMenu(false));
-  menu?.addEventListener('click', (e) => { if (e.target === menu) toggleMenu(false); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
+	if (transitionTitle) {
+		transitionTitle.textContent = body.dataset.pageLabel || "WebDotMe";
+	}
 
-  function shouldTransition(a){
-    if (!a || a.target === '_blank' || a.hasAttribute('download')) return false;
-    const href = a.getAttribute('href') || '';
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
-    try {
-      const url = new URL(a.href, location.href);
-      return url.origin === location.origin && url.pathname !== location.pathname;
-    } catch { return false; }
-  }
-
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[data-transition], .menu a[href], .desktop-nav a[href], .next-page[href], .logo[href]');
-    if (!shouldTransition(a)) return;
-    e.preventDefault();
-    toggleMenu(false);
-    const label = a.dataset.label || a.textContent.trim().replace(/↗|→/g,'').trim() || 'Next';
-    if (ptTitle) ptTitle.textContent = label;
-    body.classList.remove('page-enter');
-    body.classList.add('transitioning');
-		setTimeout(() => { location.href = a.href; }, 450);
-  });
-
-	// Motion follows intent: the environment responds quietly to the pointer,
-	// while the project itself gets the richer interaction.
-	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-	if (!reduceMotion && finePointer) {
-		document.documentElement.classList.add('motion-reactive');
-		let targetX = 0;
-		let targetY = 0;
-		let currentX = 0;
-		let currentY = 0;
-		let motionFrame = 0;
-
-		const renderField = () => {
-			currentX += (targetX - currentX) * .12;
-			currentY += (targetY - currentY) * .12;
-			document.documentElement.style.setProperty('--field-x', `${currentX.toFixed(2)}px`);
-			document.documentElement.style.setProperty('--field-y', `${currentY.toFixed(2)}px`);
-
-			if (Math.abs(targetX - currentX) > .05 || Math.abs(targetY - currentY) > .05) {
-				motionFrame = requestAnimationFrame(renderField);
-			} else {
-				motionFrame = 0;
-			}
-		};
-
-		window.addEventListener('pointermove', (event) => {
-			targetX = ((event.clientX / window.innerWidth) - .5) * 12;
-			targetY = ((event.clientY / window.innerHeight) - .5) * 9;
-			if (!motionFrame) motionFrame = requestAnimationFrame(renderField);
-		}, { passive: true });
-
-		document.querySelectorAll('.browser, .project-row, .screen-frame').forEach((card) => {
-			card.addEventListener('pointermove', (event) => {
-				const rect = card.getBoundingClientRect();
-				card.style.setProperty('--card-x', `${event.clientX - rect.left}px`);
-				card.style.setProperty('--card-y', `${event.clientY - rect.top}px`);
-			}, { passive: true });
+	if (!reduceMotion && transition) {
+		requestAnimationFrame(() => {
+			body.classList.add("page-enter");
+			setTimeout(() => body.classList.remove("page-enter"), 800);
 		});
 	}
 
-	// IntersectionObserver keeps the reveal choreography intact in browsers
-	// that do not yet support scroll-driven CSS animation timelines.
-	if (!reduceMotion && !CSS.supports('animation-timeline: view()')) {
-		document.documentElement.classList.add('observer-reveal');
-		const revealObserver = new IntersectionObserver((entries) => {
+	const toggleMenu = (open) => {
+		body.classList.toggle("menu-open", open);
+		openButton?.setAttribute("aria-expanded", open ? "true" : "false");
+		menu?.setAttribute("aria-hidden", open ? "false" : "true");
+	};
+
+	openButton?.addEventListener("click", () => toggleMenu(!body.classList.contains("menu-open")));
+	closeButton?.addEventListener("click", () => toggleMenu(false));
+	menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") toggleMenu(false);
+	});
+
+	const shouldTransition = (link) => {
+		if (!link || link.target === "_blank" || link.hasAttribute("download") || reduceMotion) return false;
+		const href = link.getAttribute("href") || "";
+		if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("sms:")) return false;
+
+		try {
+			const url = new URL(link.href, window.location.href);
+			return url.origin === window.location.origin && url.pathname !== window.location.pathname;
+		} catch {
+			return false;
+		}
+	};
+
+	document.addEventListener("click", (event) => {
+		const link = event.target.closest("a[data-transition], .menu a[href], .desktop-nav a[href], .next-page[href], .logo[href]");
+		if (!shouldTransition(link)) return;
+
+		event.preventDefault();
+		toggleMenu(false);
+		if (transitionTitle) {
+			transitionTitle.textContent = link.dataset.label || link.textContent.trim() || "Next";
+		}
+		body.classList.remove("page-enter");
+		body.classList.add("transitioning");
+		setTimeout(() => {
+			window.location.href = link.href;
+		}, 430);
+	});
+
+	if (!reduceMotion && "IntersectionObserver" in window && !CSS.supports("animation-timeline: view()")) {
+		document.documentElement.classList.add("observer-reveal");
+		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
 				if (!entry.isIntersecting) return;
-				entry.target.classList.add('is-visible');
-				revealObserver.unobserve(entry.target);
+				entry.target.classList.add("is-visible");
+				observer.unobserve(entry.target);
 			});
-		}, { rootMargin: '0px 0px -12% 0px', threshold: .12 });
+		}, {
+			rootMargin: "0px 0px -10% 0px",
+			threshold: 0.12
+		});
 
-		document.querySelectorAll('.reveal, .reveal-left').forEach((element) => revealObserver.observe(element));
+		document.querySelectorAll(".reveal, .reveal-left").forEach((element) => observer.observe(element));
 	}
 
-  // Conversion measurement. Vercel Web Analytics receives only event names and
-  // non-personal context; inquiry contents are never included.
-  const track = (eventName, params = {}) => {
-    if (typeof window.va === 'function') {
-      window.va('event', { name: eventName, data: params });
-    }
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', eventName, params);
-    }
-  };
+	const track = (name, data = {}) => {
+		if (typeof window.va === "function") {
+			window.va("event", { name, data });
+		}
+		if (typeof window.gtag === "function") {
+			window.gtag("event", name, data);
+		}
+	};
 
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest('a');
-    if (!link) return;
-    const href = link.getAttribute('href') || '';
-    if (href.startsWith('mailto:')) track('email_click', { page: location.pathname });
-    if (href.startsWith('tel:')) track('phone_click', { page: location.pathname });
-    if (/^https?:\/\//i.test(href) && !href.includes('webdotme.com')) {
-      track('outbound_click', {
-        destination: new URL(href).hostname,
-        page: location.pathname
-      });
-    }
-  });
+	document.addEventListener("click", (event) => {
+		const link = event.target.closest("a");
+		if (!link) return;
+		const href = link.getAttribute("href") || "";
 
-  // The inquiry form opens a prepared SMS immediately. The visitor still
-  // controls the final send action in their phone's Messages app.
-  const form = document.getElementById('projectForm');
-  const status = document.getElementById('projectFormStatus');
+		if (href.startsWith("mailto:")) track("email_click", { page: window.location.pathname });
+		if (href.startsWith("tel:")) track("phone_click", { page: window.location.pathname });
+		if (href.startsWith("sms:")) track("text_click", { page: window.location.pathname });
 
-  if (form) {
-    form.addEventListener('input', () => {
-      if (form.dataset.started) return;
-      form.dataset.started = 'true';
-      track('project_form_started', { page: location.pathname });
-    }, { once: true });
+		if (/^https?:\/\//i.test(href) && !href.includes("webdotme.com")) {
+			try {
+				track("outbound_click", {
+					destination: new URL(href).hostname,
+					page: window.location.pathname
+				});
+			} catch {
+				// Ignore malformed external links rather than interrupting navigation.
+			}
+		}
+	});
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
+	const form = document.getElementById("projectForm");
+	const status = document.getElementById("projectFormStatus");
 
-      const fd = new FormData(form);
-      const payload = {
-        name: String(fd.get('name') || ''),
-        email: String(fd.get('email') || ''),
-        phone: String(fd.get('phone') || ''),
-        business: String(fd.get('business') || ''),
-        websiteInstagram: String(fd.get('website_instagram') || ''),
-        needs: fd.getAll('needs').map(String),
-        budget: String(fd.get('budget') || ''),
-        project: String(fd.get('project') || '')
-      };
-      const needs = payload.needs.length ? payload.needs.join(', ') : 'Not selected';
-      const draft = `Hey Steve — I just filled out the WebDotMe project form.
+	if (form) {
+		form.addEventListener("input", () => {
+			if (form.dataset.started) return;
+			form.dataset.started = "true";
+			track("project_form_started", { page: window.location.pathname });
+		}, { once: true });
 
-Name: ${payload.name}
-Email: ${payload.email}
-Phone: ${payload.phone || 'Not provided'}
-Business: ${payload.business || 'Not provided'}
-Website / Instagram: ${payload.websiteInstagram || 'Not provided'}
-Needs: ${needs}
-Budget: ${payload.budget || 'Not selected'}
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			if (!form.reportValidity()) return;
 
-Project:
-${payload.project}`;
+			const data = new FormData(form);
+			const needs = data.getAll("needs").map(String);
+			const payload = {
+				name: String(data.get("name") || ""),
+				email: String(data.get("email") || ""),
+				phone: String(data.get("phone") || ""),
+				business: String(data.get("business") || ""),
+				websiteInstagram: String(data.get("website_instagram") || ""),
+				needs,
+				budget: String(data.get("budget") || ""),
+				project: String(data.get("project") || "")
+			};
 
-      track('project_form_completed', {
-        contact_method: 'sms',
-        selected_services: payload.needs.join(', ')
-      });
-      if (status) status.textContent = 'Opening your prepared text…';
-      window.location.href = `sms:+12157799288?&body=${encodeURIComponent(draft)}`;
-    });
-  }
+			const draft = `Hey Steve — I just filled out the WebDotMe project form.\n\nName: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || "Not provided"}\nBusiness: ${payload.business || "Not provided"}\nWebsite / Instagram: ${payload.websiteInstagram || "Not provided"}\nNeeds: ${needs.length ? needs.join(", ") : "Not selected"}\nBudget: ${payload.budget || "Not selected"}\n\nProject:\n${payload.project}`;
+
+			track("project_form_completed", {
+				contact_method: "sms",
+				selected_services: needs.join(", ")
+			});
+
+			if (status) status.textContent = "Opening your prepared text…";
+			window.location.href = `sms:+12157799288?&body=${encodeURIComponent(draft)}`;
+		});
+	}
 })();
