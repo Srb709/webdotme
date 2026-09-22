@@ -8,6 +8,13 @@
 		document.head.appendChild(portraitStylesheet);
 	}
 
+	if (!document.querySelector('link[href="/assets/typography-pass.css"]')) {
+		const typographyStylesheet = document.createElement("link");
+		typographyStylesheet.rel = "stylesheet";
+		typographyStylesheet.href = "/assets/typography-pass.css";
+		document.head.appendChild(typographyStylesheet);
+	}
+
 	window.va = window.va || function () {
 		(window.vaq = window.vaq || []).push(arguments);
 	};
