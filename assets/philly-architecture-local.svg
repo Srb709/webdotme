@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 1800" role="img" aria-label="Dark geometric architecture texture for WebDotMe">
+	<defs>
+		<linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#050505"/>
+			<stop offset="0.44" stop-color="#111111"/>
+			<stop offset="1" stop-color="#070707"/>
+		</linearGradient>
+		<linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#22231f"/>
+			<stop offset="0.48" stop-color="#10110f"/>
+			<stop offset="1" stop-color="#050505"/>
+		</linearGradient>
+		<filter id="grain">
+			<feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch"/>
+			<feColorMatrix type="saturate" values="0"/>
+			<feComponentTransfer>
+				<feFuncA type="table" tableValues="0 0.18"/>
+			</feComponentTransfer>
+		</filter>
+	</defs>
+	<rect width="3000" height="1800" fill="url(#sky)"/>
+	<g opacity="0.92">
+		<polygon points="0,1800 0,320 470,120 470,1800" fill="#0b0b0a"/>
+		<polygon points="470,1800 470,120 980,0 980,1800" fill="#151512"/>
+		<polygon points="980,1800 980,0 1535,185 1535,1800" fill="#0c0d0b"/>
+		<polygon points="1535,1800 1535,185 2050,45 2050,1800" fill="#171814"/>
+		<polygon points="2050,1800 2050,45 3000,260 3000,1800" fill="#0a0a09"/>
+	</g>
+	<g stroke="#f4f1e9" stroke-opacity="0.095" stroke-width="2">
+		<path d="M470 120v1680M980 0v1800M1535 185v1615M2050 45v1755"/>
+		<path d="M0 522h3000M0 735h3000M0 948h3000M0 1161h3000M0 1374h3000M0 1587h3000"/>
+		<path d="M212 0v1800M681 0v1800M1214 0v1800M1776 0v1800M2362 0v1800M2710 0v1800" opacity="0.52"/>
+	</g>
+	<g fill="url(#glass)" opacity="0.64">
+		<rect x="96" y="518" width="246" height="142"/>
+		<rect x="96" y="796" width="246" height="142"/>
+		<rect x="96" y="1074" width="246" height="142"/>
+		<rect x="96" y="1352" width="246" height="142"/>
+		<rect x="574" y="284" width="288" height="176"/>
+		<rect x="574" y="621" width="288" height="176"/>
+		<rect x="574" y="958" width="288" height="176"/>
+		<rect x="574" y="1295" width="288" height="176"/>
+		<rect x="1106" y="336" width="302" height="184"/>
+		<rect x="1106" y="700" width="302" height="184"/>
+		<rect x="1106" y="1064" width="302" height="184"/>
+		<rect x="1106" y="1428" width="302" height="184"/>
+		<rect x="1655" y="392" width="304" height="188"/>
+		<rect x="1655" y="760" width="304" height="188"/>
+		<rect x="1655" y="1128" width="304" height="188"/>
+		<rect x="2182" y="470" width="340" height="205"/>
+		<rect x="2182" y="864" width="340" height="205"/>
+		<rect x="2182" y="1258" width="340" height="205"/>
+	</g>
+	<g fill="#bfff2f" opacity="0.09">
+		<circle cx="2360" cy="375" r="260"/>
+		<circle cx="790" cy="1180" r="180"/>
+	</g>
+	<rect width="3000" height="1800" fill="#000" opacity="0.28"/>
+	<rect width="3000" height="1800" filter="url(#grain)"/>
+</svg>
