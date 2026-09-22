@@ -50,10 +50,10 @@
 			<div class="wdm-showcase-shell">
 				<div class="wdm-showcase-list" aria-label="Featured project preview selector">
 					<button aria-pressed="true" class="wdm-showcase-button" data-live="https://littlelutestudio.com" data-project="lute" type="button">
-						<small>01</small><strong>Little Lute</strong><em>Client / live</em>
+						<small>01</small><strong>Little Lute</strong><em>Small business / live</em>
 					</button>
 					<button aria-pressed="false" class="wdm-showcase-button" data-live="https://foundry-no-9.vercel.app" data-project="foundry" type="button">
-						<small>02</small><strong>Foundry No. 9</strong><em>Concept / motion</em>
+						<small>02</small><strong>Foundry No. 9</strong><em>Editorial / motion</em>
 					</button>
 					<button aria-pressed="false" class="wdm-showcase-button" data-live="https://monolith-architecture-gamma.vercel.app" data-project="monolith" type="button">
 						<small>03</small><strong>MØNOLITH</strong><em>WebGL / spatial</em>
@@ -140,7 +140,7 @@
 	const buildProjectArtifacts = () => {
 		const configs = {
 			"little-lute": {
-				chip: "Real client / responsive system",
+				chip: "Responsive system / live build",
 				note: "One brand / two service paths / phone-first",
 				phone: true
 			},
