@@ -54,6 +54,13 @@
 		}, { once: true });
 	}
 
+	if ((body.dataset.pageLabel === "Home" || window.location.pathname.startsWith("/work")) && !document.querySelector('script[src="/assets/preview-sync.js"]')) {
+		const previewSync = document.createElement("script");
+		previewSync.src = "/assets/preview-sync.js";
+		previewSync.defer = true;
+		document.body.appendChild(previewSync);
+	}
+
 	const breadcrumbRoutes = {
 		"/services/website-design/": ["Home", "Services", "Website Design"],
 		"/services/website-development/": ["Home", "Services", "Website Development"],
