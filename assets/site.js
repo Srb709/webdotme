@@ -45,6 +45,15 @@
 	const transitionTitle = transition?.querySelector(".pt-title");
 	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+	if (body.dataset.pageLabel === "Home") {
+		window.addEventListener("load", () => {
+			if (document.querySelector('script[src="/assets/home-fixes.js"]')) return;
+			const homeFixes = document.createElement("script");
+			homeFixes.src = "/assets/home-fixes.js";
+			document.body.appendChild(homeFixes);
+		}, { once: true });
+	}
+
 	const breadcrumbRoutes = {
 		"/services/website-design/": ["Home", "Services", "Website Design"],
 		"/services/website-development/": ["Home", "Services", "Website Development"],
