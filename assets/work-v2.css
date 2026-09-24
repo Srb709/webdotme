@@ -158,6 +158,10 @@
 	transition: transform 0.9s var(--ease);
 }
 
+.work-feature-lute-preview {
+	inset: 40px 0 0;
+}
+
 .work-feature-visual:hover .work-feature-screen img {
 	transform: scale(1.025);
 }
