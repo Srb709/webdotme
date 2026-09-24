@@ -24,12 +24,14 @@
 		transform: scale(0.6667);
 	}
 
-	.wdm-showcase-stage.is-live .wdm-showcase-live {
+	.wdm-showcase-stage.is-live .wdm-showcase-live,
+	.wdm-showcase-stage.is-live-preview .wdm-showcase-live {
 		opacity: 1 !important;
 		visibility: visible !important;
 	}
 
-	.wdm-showcase-stage.is-live .wdm-showcase-panel.is-active {
+	.wdm-showcase-stage.is-live .wdm-showcase-panel.is-active,
+	.wdm-showcase-stage.is-live-preview .wdm-showcase-panel.is-active {
 		opacity: 0 !important;
 		visibility: hidden !important;
 	}
@@ -191,6 +193,78 @@ body[data-page-label="Services"] .next-page strong::after {
 	}
 }
 
+@media (max-width: 900px) {
+	.wdm-showcase-live,
+	.wdm-live-frame,
+	.work-feature-live,
+	.case-preview-live {
+		display: block !important;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		border: 0;
+		pointer-events: none;
+		background: #080808;
+		opacity: 0;
+		visibility: visible;
+		transition: opacity 0.45s ease;
+	}
+
+	.wdm-showcase-live {
+		z-index: 18;
+		top: 40px;
+		height: calc(100% - 40px);
+	}
+
+	.wdm-showcase-stage.is-live .wdm-showcase-live,
+	.wdm-showcase-stage.is-live-preview .wdm-showcase-live {
+		opacity: 1 !important;
+	}
+
+	.wdm-showcase-stage.is-live .wdm-showcase-panel.is-active,
+	.wdm-showcase-stage.is-live-preview .wdm-showcase-panel.is-active {
+		opacity: 0 !important;
+		visibility: hidden !important;
+	}
+
+	.wdm-live-frame {
+		z-index: 6;
+		top: 36px;
+		height: calc(100% - 36px);
+	}
+
+	.wdm-project-portal.is-live-preview .wdm-live-frame,
+	.wdm-project-portal.is-live .wdm-live-frame {
+		opacity: 1 !important;
+	}
+
+	.wdm-project-portal.is-live-preview .wdm-portal-fallback,
+	.wdm-project-portal.is-live-preview .wdm-site-shot,
+	.wdm-project-portal.is-live .wdm-portal-fallback,
+	.wdm-project-portal.is-live .wdm-site-shot {
+		opacity: 0 !important;
+		visibility: hidden !important;
+	}
+
+	.work-feature-live,
+	.case-preview-live {
+		z-index: 3;
+		top: 36px;
+		height: calc(100% - 36px);
+	}
+
+	.work-feature-visual.is-live-preview .work-feature-live,
+	.work-feature-visual.is-live-preview .case-preview-live {
+		opacity: 1;
+	}
+
+	.work-feature-visual.is-live-preview .work-feature-screen,
+	.work-feature-visual.is-live-preview .work-feature-concept {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
 @media (max-width: 600px) {
 	body[data-page-label="Services"] .next-page strong::after {
 		font-size: clamp(34px, 11vw, 50px);
@@ -200,14 +274,57 @@ body[data-page-label="Services"] .next-page strong::after {
 		min-height: 128%;
 		animation-duration: 11s;
 	}
-}
 
-@media (max-width: 900px) {
-	.wdm-showcase-live,
-	.wdm-live-frame,
-	.work-feature-live,
-	.case-preview-live {
-		display: none !important;
+	.wdm-hero-title,
+	.wdm-work-intro h2,
+	.wdm-project-copy h3,
+	.wdm-section-head h2,
+	.wdm-underhood-copy h2,
+	.wdm-about-copy h2,
+	.wdm-local > .wdm-section-inner > h2,
+	.wdm-final h2,
+	.page-hero h1,
+	.project-row-title,
+	.form-intro h1,
+	.next-page strong {
+		font-kerning: normal;
+		font-feature-settings: "kern" 1;
+		letter-spacing: -0.04em !important;
+	}
+
+	.wdm-hero-title {
+		font-size: clamp(46px, 13.9vw, 65px) !important;
+		line-height: 0.82 !important;
+	}
+
+	.wdm-project-copy h3 {
+		font-size: clamp(44px, 12.5vw, 58px) !important;
+		line-height: 0.92 !important;
+		max-width: 10ch;
+	}
+
+	.wdm-underhood-copy h2,
+	.wdm-about-copy h2,
+	.wdm-local > .wdm-section-inner > h2,
+	.wdm-final h2 {
+		font-size: clamp(43px, 12.2vw, 57px) !important;
+		line-height: 0.94 !important;
+	}
+
+	.wdm-section-head h2,
+	.wdm-showcase-button strong {
+		letter-spacing: -0.03em !important;
+	}
+
+	.wdm-hero-title .wdm-serif,
+	.wdm-project-copy h3 em,
+	.wdm-underhood-copy h2 em,
+	.wdm-about-copy h2 em,
+	.wdm-local > .wdm-section-inner > h2 em,
+	.wdm-final h2 em,
+	.page-hero h1 em,
+	.form-intro h1 em {
+		letter-spacing: -0.015em !important;
 	}
 }
 
