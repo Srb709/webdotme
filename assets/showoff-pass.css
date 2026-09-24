@@ -163,19 +163,115 @@
 	background: #eee7dd;
 }
 
-.wdm-showcase-lute-scroll {
+.wdm-showcase-lute-scene {
 	position: absolute;
 	inset: 0;
 	overflow: hidden;
+	background:
+		linear-gradient(rgba(23, 9, 18, 0.08) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(23, 9, 18, 0.08) 1px, transparent 1px),
+		#f3eee7;
+	background-size: 34px 34px;
 }
 
-.wdm-showcase-lute-scroll img {
+.wdm-showcase-lute-heading {
+	position: absolute;
+	z-index: 3;
+	left: clamp(22px, 4vw, 56px);
+	top: clamp(34px, 5vw, 70px);
+	color: #170912;
+}
+
+.wdm-showcase-lute-heading small {
+	display: block;
+	margin-bottom: 18px;
+	font-size: 8px;
+	font-weight: 760;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+.wdm-showcase-lute-heading strong {
+	display: block;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(56px, 7.3vw, 112px);
+	font-weight: 400;
+	line-height: 0.77;
+	letter-spacing: -0.055em;
+	text-transform: uppercase;
+}
+
+.wdm-showcase-lute-heading strong span {
+	display: block;
+}
+
+.wdm-showcase-lute-heading strong span:last-child {
+	margin-left: clamp(42px, 7vw, 110px);
+}
+
+.wdm-showcase-lute-photo {
+	position: absolute;
+	z-index: 2;
+	margin: 0;
+	background: #ddd5ca;
+	box-shadow: 0 24px 50px rgba(23, 9, 18, 0.2);
+	overflow: hidden;
+}
+
+.wdm-showcase-lute-photo picture {
+	display: block;
 	width: 100%;
-	height: auto;
-	min-height: 165%;
+	height: 100%;
+}
+
+.wdm-showcase-lute-photo img {
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
-	object-position: top center;
-	animation: wdm-site-scroll 13s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+	transform: scale(1.025);
+}
+
+.wdm-showcase-lute-photo figcaption {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	padding: 7px 9px;
+	background: rgba(23, 9, 18, 0.86);
+	color: #fff;
+	font-size: 7px;
+	font-weight: 760;
+	letter-spacing: 0.13em;
+	text-transform: uppercase;
+}
+
+.wdm-showcase-lute-photo.is-stitch {
+	right: 7%;
+	top: 9%;
+	width: 29%;
+	height: 58%;
+	transform: rotate(3deg);
+	animation: wdm-lute-stitch 7s ease-in-out infinite alternate;
+}
+
+.wdm-showcase-lute-photo.is-glow {
+	right: 31%;
+	bottom: 7%;
+	width: 24%;
+	height: 48%;
+	transform: rotate(-4deg);
+	animation: wdm-lute-glow 8.5s ease-in-out infinite alternate;
+}
+
+.wdm-showcase-lute-note {
+	position: absolute;
+	z-index: 3;
+	left: clamp(24px, 5vw, 68px);
+	bottom: clamp(32px, 6vw, 78px);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(18px, 2.2vw, 34px);
+	font-style: italic;
+	line-height: 1.05;
+	color: #170912;
 }
 
 .wdm-showcase-panel[data-project="foundry"] {
@@ -678,6 +774,16 @@
 	92%, 100% { transform: translateY(-39%); }
 }
 
+@keyframes wdm-lute-stitch {
+	from { transform: translate3d(0, 0, 0) rotate(3deg); }
+	to { transform: translate3d(-8px, 10px, 0) rotate(1.5deg); }
+}
+
+@keyframes wdm-lute-glow {
+	from { transform: translate3d(0, 0, 0) rotate(-4deg); }
+	to { transform: translate3d(9px, -9px, 0) rotate(-2deg); }
+}
+
 @keyframes wdm-foundry-pan {
 	from { transform: scale(1.04) translate3d(-1.5%, 0, 0); }
 	to { transform: scale(1.11) translate3d(2.5%, -1.5%, 0); }
@@ -760,6 +866,44 @@
 	}
 
 	.wdm-showcase-live {
+		display: none;
+	}
+
+	.wdm-showcase-lute-heading {
+		left: 20px;
+		top: 38px;
+	}
+
+	.wdm-showcase-lute-heading small {
+		max-width: 24ch;
+		margin-bottom: 12px;
+		font-size: 7px;
+	}
+
+	.wdm-showcase-lute-heading strong {
+		font-size: clamp(45px, 14vw, 72px);
+	}
+
+	.wdm-showcase-lute-heading strong span:last-child {
+		margin-left: 28px;
+	}
+
+	.wdm-showcase-lute-photo.is-stitch {
+		right: 7%;
+		top: 35%;
+		width: 43%;
+		height: 50%;
+	}
+
+	.wdm-showcase-lute-photo.is-glow {
+		left: 7%;
+		right: auto;
+		bottom: 5%;
+		width: 36%;
+		height: 41%;
+	}
+
+	.wdm-showcase-lute-note {
 		display: none;
 	}
 
@@ -850,7 +994,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.wdm-showcase-lute-scroll img,
+	.wdm-showcase-lute-photo,
 	.wdm-showcase-foundry-photo,
 	.wdm-showcase-mono-grid,
 	.wdm-showcase-mono-geometry,

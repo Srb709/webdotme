@@ -49,7 +49,7 @@
 		selector.innerHTML = `
 			<div class="wdm-showcase-shell">
 				<div class="wdm-showcase-list" aria-label="Featured project preview selector">
-					<button aria-pressed="true" class="wdm-showcase-button" data-live="https://littlelutestudio.com" data-project="lute" type="button">
+					<button aria-pressed="true" class="wdm-showcase-button" data-project="lute" type="button">
 						<small>01</small><strong>Little Lute</strong><em>Small business / live</em>
 					</button>
 					<button aria-pressed="false" class="wdm-showcase-button" data-live="https://foundry-no-9.vercel.app" data-project="foundry" type="button">
@@ -62,7 +62,18 @@
 				<div class="wdm-showcase-stage" data-active="lute">
 					<div class="wdm-showcase-stage-top"><span>WebDotMe / live work surface</span><span>Move through the projects</span></div>
 					<div class="wdm-showcase-panel is-active" data-project="lute">
-						<div class="wdm-showcase-lute-scroll"><img alt="Little Lute Studio website preview" decoding="async" loading="lazy" src="assets/portfolio/little-lute-site-desktop.webp"/></div>
+						<div class="wdm-showcase-lute-scene">
+							<div class="wdm-showcase-lute-heading"><small>Embroidery + mobile spray tanning</small><strong><span>Little Lute</span><span>Studio</span></strong></div>
+							<figure class="wdm-showcase-lute-photo is-stitch">
+								<picture><source srcset="assets/portfolio/little-lute-embroidery-1086.avif" type="image/avif"/><img alt="Little Lute embroidered crewneck" decoding="async" loading="lazy" src="assets/portfolio/little-lute-embroidery-1086.webp"/></picture>
+								<figcaption>01 / Stitch</figcaption>
+							</figure>
+							<figure class="wdm-showcase-lute-photo is-glow">
+								<picture><source srcset="assets/portfolio/little-lute-spray-tan-1140.avif" type="image/avif"/><img alt="Little Lute mobile spray-tan client" decoding="async" loading="lazy" src="assets/portfolio/little-lute-spray-tan-1140.webp"/></picture>
+								<figcaption>02 / Glow</figcaption>
+							</figure>
+							<div class="wdm-showcase-lute-note">Personal work.<br/>Made locally.</div>
+						</div>
 					</div>
 					<div class="wdm-showcase-panel" data-project="foundry">
 						<div aria-hidden="true" class="wdm-showcase-foundry-photo"></div>
@@ -74,7 +85,7 @@
 						<div class="wdm-showcase-mono-copy">We shape <em>empty space.</em></div>
 					</div>
 					<iframe aria-hidden="true" class="wdm-showcase-live" loading="lazy" tabindex="-1" title="Interactive live project preview"></iframe>
-					<div class="wdm-showcase-status">Motion preview / live on desktop</div>
+					<div class="wdm-showcase-status">Crisp motion study / live projects on desktop</div>
 				</div>
 			</div>
 		`;
