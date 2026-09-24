@@ -462,6 +462,132 @@
 	object-position: top center;
 }
 
+.wdm-lute-portal-preview {
+	position: absolute;
+	inset: 42px 0 0;
+	overflow: hidden;
+	background:
+		linear-gradient(rgba(35, 14, 29, 0.07) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(35, 14, 29, 0.07) 1px, transparent 1px),
+		#f3eee7;
+	background-size: 32px 32px;
+	color: #1d0b17;
+}
+
+.wdm-lute-portal-copy {
+	position: absolute;
+	z-index: 4;
+	left: clamp(22px, 4.2vw, 60px);
+	top: clamp(28px, 5vw, 68px);
+}
+
+.wdm-lute-portal-copy > span,
+.wdm-lute-portal-copy small {
+	display: block;
+	font-size: clamp(7px, 0.72vw, 10px);
+	font-weight: 760;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+.wdm-lute-portal-copy strong {
+	display: block;
+	margin: clamp(12px, 1.7vw, 24px) 0;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(48px, 6.8vw, 104px);
+	font-weight: 400;
+	line-height: 0.75;
+	letter-spacing: -0.06em;
+	text-transform: uppercase;
+}
+
+.wdm-lute-portal-copy strong b,
+.wdm-lute-portal-copy strong em {
+	display: block;
+	font: inherit;
+}
+
+.wdm-lute-portal-copy strong em {
+	margin-left: clamp(28px, 5vw, 76px);
+}
+
+.wdm-lute-portal-photo {
+	position: absolute;
+	z-index: 3;
+	margin: 0;
+	overflow: hidden;
+	background: #d9d0c5;
+	box-shadow: 0 22px 52px rgba(29, 11, 23, 0.2);
+}
+
+.wdm-lute-portal-photo picture,
+.wdm-lute-portal-photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.wdm-lute-portal-photo img {
+	object-fit: cover;
+}
+
+.wdm-lute-portal-photo figcaption {
+	position: absolute;
+	left: 9px;
+	bottom: 9px;
+	padding: 6px 8px;
+	background: rgba(29, 11, 23, 0.88);
+	color: #fff;
+	font-size: 7px;
+	font-weight: 760;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.wdm-lute-portal-photo.is-stitch {
+	right: 7%;
+	top: 9%;
+	width: 27%;
+	height: 65%;
+	transform: rotate(2.5deg);
+	animation: wdm-lute-portal-stitch 7s ease-in-out infinite alternate;
+}
+
+.wdm-lute-portal-photo.is-glow {
+	right: 30%;
+	bottom: 7%;
+	width: 22%;
+	height: 48%;
+	transform: rotate(-3.5deg);
+	animation: wdm-lute-portal-glow 8.5s ease-in-out infinite alternate;
+}
+
+.wdm-lute-portal-stamp {
+	position: absolute;
+	z-index: 4;
+	right: 5%;
+	bottom: 7%;
+	padding: 11px 13px;
+	border: 1px solid rgba(29, 11, 23, 0.45);
+	font-size: 7px;
+	font-weight: 760;
+	line-height: 1.45;
+	letter-spacing: 0.12em;
+	text-align: center;
+	text-transform: uppercase;
+	transform: rotate(3deg);
+}
+
+@keyframes wdm-lute-portal-stitch {
+	from { transform: translate3d(0, 0, 0) rotate(2.5deg); }
+	to { transform: translate3d(-7px, 8px, 0) rotate(1deg); }
+}
+
+@keyframes wdm-lute-portal-glow {
+	from { transform: translate3d(0, 0, 0) rotate(-3.5deg); }
+	to { transform: translate3d(8px, -7px, 0) rotate(-2deg); }
+}
+
 #foundry .wdm-artifact-chip {
 	left: auto;
 	right: 16px;

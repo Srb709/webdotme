@@ -152,8 +152,7 @@
 		const configs = {
 			"little-lute": {
 				chip: "Responsive system / live build",
-				note: "One brand / two service paths / phone-first",
-				phone: true
+				note: "One brand / two service paths / phone-first"
 			},
 			foundry: {
 				chip: "Editorial motion / GSAP",
