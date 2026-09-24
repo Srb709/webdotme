@@ -14,15 +14,6 @@ function portfolioPicture({ prefix, name, widths, sizes, alt, width, height, pri
   return `<picture><source sizes="${sizes}" srcset="${avif}" type="image/avif"/><source sizes="${sizes}" srcset="${webp}" type="image/webp"/><img alt="${alt}" decoding="async"${loading} height="${height}" src="${prefix}${name}-${widths[1]}.webp" width="${width}"/></picture>`;
 }
 
-const homeWbg = portfolioPicture({
-  prefix: "assets/portfolio/",
-  name: "washington-benefits-homepage",
-  widths: [800, 1200, 1800],
-  sizes: "(max-width: 760px) 92vw, 1100px",
-  alt: "Washington Benefits Group website homepage with health insurance and Medicare guidance",
-  width: 1800,
-  height: 775,
-});
 const homeEmbroidery = portfolioPicture({
   prefix: "assets/portfolio/",
   name: "little-lute-embroidery",
@@ -43,9 +34,7 @@ const homeTan = portfolioPicture({
 });
 
 await update("index.html", (html) => html
-  .replace('<img alt="Washington Benefits Group website homepage with health insurance and Medicare guidance" loading="lazy" src="assets/washington-benefits-homepage.jpg"/>', homeWbg)
   .replace('<img alt="Cream sweatshirt embroidered with the Little Lute Studio logo" loading="lazy" src="https://raw.githubusercontent.com/Srb709/-little-lute-studio/main/public/embroidery/brand-crewneck.png"/><img alt="Bride photographed indoors for Little Lute Studio’s mobile spray tanning service" loading="lazy" src="https://raw.githubusercontent.com/Srb709/-little-lute-studio/main/public/spray-tan/bride-indoor.png"/>', homeEmbroidery + homeTan)
-  .replace('<a class="case-link" data-label="Washington Benefits Group"', '<a aria-label="View the Washington Benefits Group case study" class="case-link" data-label="Washington Benefits Group"')
   .replace('<a class="case-link" data-label="Little Lute Studio"', '<a aria-label="View the Little Lute Studio case study" class="case-link" data-label="Little Lute Studio"')
 );
 
@@ -72,30 +61,6 @@ await update("work/little-lute-studio/index.html", (html) => html.replace(
   '<img alt="Cream sweatshirt embroidered with the Little Lute Studio logo" loading="lazy" src="https://raw.githubusercontent.com/Srb709/-little-lute-studio/main/public/embroidery/brand-crewneck.png"/><img alt="Bride photographed indoors for Little Lute Studio’s mobile spray tanning service" loading="lazy" src="https://raw.githubusercontent.com/Srb709/-little-lute-studio/main/public/spray-tan/bride-indoor.png"/>',
   caseEmbroidery + caseTan,
 ));
-
-const caseWbg = portfolioPicture({
-  prefix: "../../assets/portfolio/",
-  name: "washington-benefits-homepage",
-  widths: [800, 1200, 1800],
-  sizes: "(max-width: 760px) 92vw, 680px",
-  alt: "Washington Benefits Group website homepage displayed in a desktop browser mockup",
-  width: 1800,
-  height: 775,
-  priority: true,
-});
-const showcaseWbg = portfolioPicture({
-  prefix: "../../assets/portfolio/",
-  name: "washington-benefits-homepage",
-  widths: [800, 1200, 1800],
-  sizes: "(max-width: 760px) 92vw, 760px",
-  alt: "",
-  width: 1800,
-  height: 775,
-});
-await update("work/washington-benefits-group/index.html", (html) => html
-  .replace('<img alt="Washington Benefits Group website homepage displayed in a desktop browser mockup" loading="eager" src="../../assets/washington-benefits-homepage.jpg"/>', caseWbg)
-  .replace('<img alt="" loading="lazy" src="../../assets/washington-benefits-homepage.jpg"/>', showcaseWbg)
-);
 
 await update("assets/site-core.css", (css) => css.replace(
   ".lute-images{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:center;padding:0 2px}",

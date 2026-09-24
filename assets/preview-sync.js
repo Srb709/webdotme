@@ -70,11 +70,7 @@
 	};
 
 	const frames = [];
-	const homePortals = [
-		["lute", document.querySelector("#little-lute .wdm-project-portal"), projects.lute],
-		["foundry", document.querySelector("#foundry .wdm-project-portal"), projects.foundry],
-		["monolith", document.querySelector("#monolith .wdm-project-portal"), projects.monolith]
-	];
+	const homePortals = [];
 
 	homePortals.forEach(([key, portal, project]) => {
 		if (mobile && key === "lute") return;
@@ -82,7 +78,7 @@
 		if (frame) frames.push(frame);
 	});
 
-	const workFeatures = Array.from(document.querySelectorAll(".work-feature"));
+	const workFeatures = [];
 	const workProjects = [projects.lute, projects.foundry, projects.monolith];
 
 	workFeatures.slice(0, 3).forEach((feature, index) => {

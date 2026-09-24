@@ -55,12 +55,10 @@ case_card() {
     -quality 88 "$OUT/$output"
 }
 
-case_card 'washington-benefits.jpg' "$ROOT/assets/portfolio/wbg-site-desktop.webp" 'WASHINGTON' 'BENEFITS GROUP' 'Insurance website · PA + MI' 2200
 case_card 'little-lute-studio.jpg' "$ROOT/assets/portfolio/little-lute-site-desktop.webp" 'LITTLE LUTE' 'STUDIO' 'Embroidery + mobile spray tanning' 1700
 
 convert "$BG" -resize '1200x630^' -gravity center -extent 1200x630 \
-  \( "$ROOT/assets/portfolio/wbg-site-desktop.webp" -gravity north -crop 1348x1800+0+0 +repage -resize '310x390^' -gravity north -extent 310x390 -bordercolor '#3a3d38' -border 2 \) -gravity northeast -geometry +65+120 -composite \
-  \( "$ROOT/assets/portfolio/little-lute-site-desktop.webp" -gravity north -crop 1363x1500+0+0 +repage -resize '310x390^' -gravity north -extent 310x390 -bordercolor '#3a3d38' -border 2 \) -gravity northeast -geometry +395+85 -composite \
+  \( "$ROOT/assets/portfolio/little-lute-site-desktop.webp" -gravity north -crop 1363x1500+0+0 +repage -resize '420x390^' -gravity north -extent 420x390 -bordercolor '#3a3d38' -border 2 \) -gravity northeast -geometry +65+110 -composite \
   -fill "$LIME" -font "$MONO" -pointsize 18 -kerning 4 -gravity northwest -annotate +70+92 'SELECTED WORK' \
   -fill "$WHITE" -font "$BOLD" -pointsize 68 -kerning -3 -annotate +66+245 'SITES WITH' \
   -annotate +66+325 'SUBSTANCE.' \

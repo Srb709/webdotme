@@ -109,8 +109,8 @@ body.menu-open .menu{transform:none;visibility:visible;transition:transform .72s
 .page-transition .pt-kicker{font-size:8px;text-transform:uppercase;letter-spacing:.16em;font-weight:900;margin-bottom:14px}
 .page-transition .pt-title{font-size:clamp(64px,19vw,160px);line-height:.72;letter-spacing:-.09em;text-transform:uppercase;font-weight:900;max-width:8ch}
 .page-transition .pt-line{height:1px;background:rgba(0,0,0,.35);margin-top:25px;transform-origin:left}
-body.transitioning .page-transition{animation:coverIn .62s var(--ease) forwards}
-body.page-enter .page-transition{animation:coverOut .82s .08s var(--ease) both}
+body.transitioning .page-transition{animation:coverIn .38s var(--ease) forwards}
+body.page-enter .page-transition{animation:coverOut .46s var(--ease) both}
 body.page-enter .pt-title{animation:ptText .8s .02s var(--ease) both}
 body.page-enter .pt-line{animation:ptLine .7s .08s var(--ease) both}
 @keyframes coverIn{from{transform:translateY(101%)}to{transform:none}}

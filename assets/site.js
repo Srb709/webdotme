@@ -160,6 +160,11 @@
 		body.classList.toggle("menu-open", open);
 		openButton?.setAttribute("aria-expanded", open ? "true" : "false");
 		menu?.setAttribute("aria-hidden", open ? "false" : "true");
+		if (open) {
+			menu?.querySelector("a, button")?.focus();
+		} else if (document.activeElement && menu?.contains(document.activeElement)) {
+			openButton?.focus();
+		}
 	};
 
 	openButton?.addEventListener("click", () => toggleMenu(!body.classList.contains("menu-open")));
@@ -167,6 +172,20 @@
 	menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") toggleMenu(false);
+		if (event.key !== "Tab" || !body.classList.contains("menu-open") || !menu) return;
+
+		const focusable = Array.from(menu.querySelectorAll('a[href], button:not([disabled])'));
+		if (!focusable.length) return;
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
 	});
 
 	const shouldTransition = (link) => {
@@ -195,7 +214,7 @@
 		body.classList.add("transitioning");
 		setTimeout(() => {
 			window.location.href = link.href;
-		}, 430);
+		}, 260);
 	});
 
 	if (!reduceMotion && "IntersectionObserver" in window && !CSS.supports("animation-timeline: view()")) {

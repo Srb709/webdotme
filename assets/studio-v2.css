@@ -410,11 +410,11 @@ body.menu-open .menu {
 }
 
 body.transitioning .page-transition {
-	animation: studioCoverIn 0.56s var(--ease) forwards;
+	animation: studioCoverIn 0.38s var(--ease) forwards;
 }
 
 body.page-enter .page-transition {
-	animation: studioCoverOut 0.74s 0.04s var(--ease) both;
+	animation: studioCoverOut 0.46s var(--ease) both;
 }
 
 @keyframes studioCoverIn {

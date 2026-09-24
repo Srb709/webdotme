@@ -15,11 +15,6 @@ const images = [
     name: "little-lute-spray-tan",
     widths: [480, 800, 1140],
   },
-  {
-    source: "https://www.webdotme.com/assets/washington-benefits-homepage.jpg",
-    name: "washington-benefits-homepage",
-    widths: [800, 1200, 1800],
-  },
 ];
 
 for (const image of images) {

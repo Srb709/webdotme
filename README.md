@@ -61,7 +61,7 @@ Key service pages include:
 /services/website-support/
 ```
 
-Client work is documented under `/work/`, including Little Lute Studio and Washington Benefits Group.
+Selected work is documented under `/work/`, including Little Lute Studio, Foundry No. 9, and MØNOLITH.
 
 ## Lead flow
 
