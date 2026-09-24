@@ -1180,6 +1180,7 @@ body[data-page-label="Little Lute"] .case-hero-images img {
 	height: 230px !important;
 	max-height: 230px !important;
 	aspect-ratio: auto !important;
+	object-position: center top;
 }
 
 .lute-case-preview {
@@ -1273,6 +1274,7 @@ body[data-page-label="Little Lute"] .case-hero-images img {
 	body[data-page-label="Little Lute"] .case-hero-images img {
 		height: 160px !important;
 		max-height: 160px !important;
+		object-position: center top;
 	}
 
 	.lute-case-preview {
