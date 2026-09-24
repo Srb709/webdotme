@@ -1133,3 +1133,110 @@
 		transform: none !important;
 	}
 }
+
+/* Little Lute case-study presentation: sharp art direction at every viewport. */
+.lute-case-preview {
+	position: relative;
+	display: block;
+	min-height: 560px;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	background: #090909;
+	box-shadow: 0 32px 90px rgba(0, 0, 0, 0.32);
+}
+
+.lute-case-preview-bar {
+	position: absolute;
+	z-index: 10;
+	inset: 0 0 auto;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 14px;
+	background: rgba(8, 8, 8, 0.92);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	color: #b9bab4;
+	font-size: 8px;
+	font-weight: 760;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.lute-case-preview-bar b {
+	font: inherit;
+	font-weight: inherit;
+}
+
+.lute-case-preview-bar em {
+	font: inherit;
+	font-style: normal;
+	color: var(--acid);
+}
+
+.lute-case-preview-canvas {
+	inset: 42px 0 0;
+}
+
+.lute-case-preview .site-presentation-caption {
+	position: absolute;
+	z-index: 11;
+	right: 18px;
+	bottom: 14px;
+	margin: 0;
+	color: rgba(255, 255, 255, 0.66);
+	font-size: 8px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+	.lute-case-preview {
+		min-height: 0;
+		height: 560px;
+		aspect-ratio: auto;
+	}
+
+	.lute-case-preview-bar {
+		height: 40px;
+		font-size: 7px;
+	}
+
+	.lute-case-preview-canvas {
+		inset: 40px 0 0;
+	}
+
+	.lute-case-preview .wdm-lute-portal-copy {
+		left: 20px;
+		top: 30px;
+	}
+
+	.lute-case-preview .wdm-lute-portal-copy strong {
+		font-size: clamp(48px, 14vw, 82px);
+	}
+
+	.lute-case-preview .wdm-lute-portal-copy strong em {
+		margin-left: 28px;
+	}
+
+	.lute-case-preview .wdm-lute-portal-photo.is-stitch {
+		right: 7%;
+		top: 35%;
+		width: 43%;
+		height: 50%;
+	}
+
+	.lute-case-preview .wdm-lute-portal-photo.is-glow {
+		left: 7%;
+		right: auto;
+		bottom: 5%;
+		width: 36%;
+		height: 41%;
+	}
+
+	.lute-case-preview .wdm-lute-portal-stamp,
+	.lute-case-preview .site-presentation-caption {
+		display: none;
+	}
+}
