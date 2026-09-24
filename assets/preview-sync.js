@@ -4,6 +4,8 @@
 	const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 	if (saveData) return;
 
+	const mobile = window.matchMedia("(max-width: 900px)").matches;
+
 	const projects = {
 		lute: {
 			url: "https://littlelutestudio.com",
@@ -18,6 +20,30 @@
 			title: "MØNOLITH Architecture live website preview"
 		}
 	};
+
+	const setLittleLuteMobileImages = () => {
+		if (!mobile) return;
+
+		const homeImage = document.querySelector("#little-lute .wdm-site-shot img");
+		if (homeImage) {
+			homeImage.src = "/assets/portfolio/little-lute-site-mobile.webp";
+			homeImage.alt = "Little Lute Studio mobile website preview";
+		}
+
+		const workImage = document.querySelector(".work-feature:first-child .work-feature-screen img");
+		if (workImage) {
+			workImage.src = "/assets/portfolio/little-lute-site-mobile.webp";
+			workImage.alt = "Little Lute Studio mobile website preview";
+		}
+
+		const selectorImage = document.querySelector('.wdm-showcase-panel[data-project="lute"] .wdm-showcase-lute-scroll img');
+		if (selectorImage) {
+			selectorImage.src = "/assets/portfolio/little-lute-site-mobile.webp";
+			selectorImage.alt = "Little Lute Studio mobile website preview";
+		}
+	};
+
+	setLittleLuteMobileImages();
 
 	const createFrame = (container, project, className) => {
 		if (!container || !project || container.querySelector(`.${className}`)) return null;
@@ -45,12 +71,13 @@
 
 	const frames = [];
 	const homePortals = [
-		[document.querySelector("#little-lute .wdm-project-portal"), projects.lute],
-		[document.querySelector("#foundry .wdm-project-portal"), projects.foundry],
-		[document.querySelector("#monolith .wdm-project-portal"), projects.monolith]
+		["lute", document.querySelector("#little-lute .wdm-project-portal"), projects.lute],
+		["foundry", document.querySelector("#foundry .wdm-project-portal"), projects.foundry],
+		["monolith", document.querySelector("#monolith .wdm-project-portal"), projects.monolith]
 	];
 
-	homePortals.forEach(([portal, project]) => {
+	homePortals.forEach(([key, portal, project]) => {
+		if (mobile && key === "lute") return;
 		const frame = createFrame(portal, project, "wdm-live-frame");
 		if (frame) frames.push(frame);
 	});
@@ -59,6 +86,7 @@
 	const workProjects = [projects.lute, projects.foundry, projects.monolith];
 
 	workFeatures.slice(0, 3).forEach((feature, index) => {
+		if (mobile && index === 0) return;
 		const visual = feature.querySelector(".work-feature-visual");
 		const project = workProjects[index];
 		const frame = createFrame(visual, project, "work-feature-live");
@@ -67,7 +95,7 @@
 
 	const path = window.location.pathname;
 	let caseProject = null;
-	if (path.includes("/work/little-lute-studio/")) caseProject = projects.lute;
+	if (path.includes("/work/little-lute-studio/") && !mobile) caseProject = projects.lute;
 	if (path.includes("/work/foundry-no-9/")) caseProject = projects.foundry;
 	if (path.includes("/work/monolith-architecture/")) caseProject = projects.monolith;
 
@@ -115,12 +143,22 @@
 		frame.loading = "lazy";
 		frame.tabIndex = -1;
 		frame.setAttribute("aria-hidden", "true");
+		setLittleLuteMobileImages();
 
 		const activateLivePreview = (button) => {
-			const project = projects[button.dataset.project];
+			const key = button.dataset.project;
+			const project = projects[key];
 			if (!project) return;
 
+			stage.dataset.active = key;
 			stage.classList.remove("is-live", "is-live-preview");
+
+			if (mobile && key === "lute") {
+				frame.removeAttribute("src");
+				delete frame.dataset.src;
+				return;
+			}
+
 			frame.dataset.src = project.url;
 			if (frame.getAttribute("src") !== project.url) {
 				frame.removeAttribute("src");
@@ -137,6 +175,7 @@
 
 		frame.addEventListener("load", () => {
 			if (!frame.getAttribute("src")) return;
+			if (mobile && stage.dataset.active === "lute") return;
 			stage.classList.add("is-live-preview");
 		});
 
@@ -165,6 +204,7 @@
 
 	if (!setupShowcaseSelector()) {
 		const mutationObserver = new MutationObserver(() => {
+			setLittleLuteMobileImages();
 			if (!setupShowcaseSelector()) return;
 			mutationObserver.disconnect();
 		});
