@@ -1134,7 +1134,7 @@
 	}
 }
 
-/* Little Lute case-study presentation: compact hero scale. */
+/* Little Lute case-study presentation: sharp art direction at every viewport. */
 .case-hero {
 	min-height: auto;
 	padding-top: clamp(88px, 9vw, 126px);
@@ -1161,32 +1161,27 @@
 	margin-top: clamp(24px, 3vw, 38px);
 }
 
-@media (max-width: 900px) {
-	.case-hero {
-		padding: 76px 20px 24px;
-	}
-
-	.case-title {
-		margin-top: 34px;
-		font-size: clamp(50px, 17vw, 88px);
-	}
-
-	.case-hero-images {
-		margin-top: 25px;
-		gap: 10px;
-	}
-
-	.case-hero-images img {
-		max-height: none;
-		aspect-ratio: 0.92;
-	}
-
-	.case-bottom {
-		margin-top: 22px;
-	}
+/* Keep the Little Lute case study in the same compact preview family as the other work. */
+body[data-page-label="Little Lute"] .case-hero {
+	min-height: auto !important;
 }
 
-/* Little Lute case-study presentation: sharp art direction at every viewport. */
+body[data-page-label="Little Lute"] .case-title {
+	font-size: clamp(54px, 10vw, 148px) !important;
+}
+
+body[data-page-label="Little Lute"] .case-hero-images {
+	max-width: 760px !important;
+	max-height: 270px !important;
+	grid-template-columns: 1fr 1fr !important;
+}
+
+body[data-page-label="Little Lute"] .case-hero-images img {
+	height: 230px !important;
+	max-height: 230px !important;
+	aspect-ratio: auto !important;
+}
+
 .lute-case-preview {
 	position: relative;
 	display: block;
@@ -1244,6 +1239,42 @@
 }
 
 @media (max-width: 900px) {
+	.case-hero {
+		padding: 76px 20px 24px;
+	}
+
+	.case-title {
+		margin-top: 34px;
+		font-size: clamp(50px, 17vw, 88px);
+	}
+
+	.case-hero-images {
+		margin-top: 25px;
+		gap: 10px;
+	}
+
+	.case-hero-images img {
+		max-height: none;
+		aspect-ratio: 0.92;
+	}
+
+	.case-bottom {
+		margin-top: 22px;
+	}
+
+	body[data-page-label="Little Lute"] .case-title {
+		font-size: clamp(48px, 15vw, 78px) !important;
+	}
+
+	body[data-page-label="Little Lute"] .case-hero-images {
+		max-height: 178px !important;
+	}
+
+	body[data-page-label="Little Lute"] .case-hero-images img {
+		height: 160px !important;
+		max-height: 160px !important;
+	}
+
 	.lute-case-preview {
 		min-height: 0;
 		height: 560px;
