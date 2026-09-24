@@ -193,6 +193,17 @@ body[data-page-label="Services"] .next-page strong::after {
 	}
 }
 
+@keyframes wdm-lute-mobile-scroll {
+	0%,
+	12% {
+		transform: translate3d(0, 0, 0) scale(1.005);
+	}
+	88%,
+	100% {
+		transform: translate3d(0, -52%, 0) scale(1.005);
+	}
+}
+
 @media (max-width: 900px) {
 	.wdm-showcase-live,
 	.wdm-live-frame,
@@ -267,6 +278,40 @@ body[data-page-label="Services"] .next-page strong::after {
 		opacity: 0;
 		visibility: hidden;
 	}
+
+	#little-lute .wdm-live-frame,
+	body[data-page-label="Work"] .work-feature:first-child .work-feature-live,
+	.wdm-showcase-stage[data-active="lute"] .wdm-showcase-live {
+		display: none !important;
+	}
+
+	#little-lute .wdm-site-shot,
+	body[data-page-label="Work"] .work-feature:first-child .work-feature-screen,
+	.wdm-showcase-panel[data-project="lute"] {
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+
+	#little-lute .wdm-site-shot,
+	body[data-page-label="Work"] .work-feature:first-child .work-feature-screen,
+	.wdm-showcase-lute-scroll {
+		background: #fbfaf8 !important;
+		overflow: hidden !important;
+	}
+
+	#little-lute .wdm-site-shot img,
+	body[data-page-label="Work"] .work-feature:first-child .work-feature-screen img,
+	.wdm-showcase-panel[data-project="lute"] .wdm-showcase-lute-scroll img {
+		display: block !important;
+		width: 100% !important;
+		max-width: none !important;
+		height: auto !important;
+		min-height: 0 !important;
+		object-fit: initial !important;
+		object-position: top center !important;
+		animation: wdm-lute-mobile-scroll 12s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate !important;
+		will-change: transform;
+	}
 }
 
 @media (max-width: 600px) {
@@ -328,7 +373,7 @@ body[data-page-label="Services"] .next-page strong::after {
 	.wdm-final h2 em,
 	.page-hero h1 em,
 	.form-intro h1 em {
-		letter-spacing: -0.015em !important;
+		letter-spacing: -0.01em !important;
 	}
 }
 
