@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import url("launch-cleanup.css");
 
 :root {
 	--sans: "Inter Tight", Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-	--serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+	--serif: "Fraunces", Georgia, "Times New Roman", serif;
 	--foundry-preview-serif: "Bodoni Moda", "Times New Roman", serif;
 	--monolith-preview-sans: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
 	--monolith-preview-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -40,7 +40,20 @@ body {
 .about-manifesto h2 em,
 .form-intro h1 em {
 	font-family: var(--serif);
-	font-weight: 400;
+	font-style: italic;
+	font-optical-sizing: auto;
+	font-weight: 450;
+	font-variation-settings: "opsz" 104;
+	letter-spacing: -0.025em;
+}
+
+.wdm-hero-title .wdm-serif,
+.wdm-manifesto-copy em,
+.wdm-about-copy h2 em,
+.wdm-local h2 em,
+.wdm-final h2 em {
+	font-weight: 500;
+	font-variation-settings: "opsz" 120;
 }
 
 .wdm-foundry-word,
